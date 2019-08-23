@@ -62,6 +62,7 @@
           - { src: pydoc3,     dest: pydoc }
           - { src: pygettext3, dest: pygettext }
           - { src: pip3,       dest: pip }
+          - { src: pytest-3,   dest: pytest }
 
       - name: Install .bashrc
         copy:
