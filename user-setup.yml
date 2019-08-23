@@ -17,6 +17,7 @@
             - dask-jobqueue
             - pudb
             - pysnooper
+            - altair
 
       - name: Install Rike's vim config
         git:
