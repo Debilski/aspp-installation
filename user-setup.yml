@@ -1,0 +1,75 @@
+---
+  - name: User setup
+    remote_user: root
+    become_user: student
+    become: yes
+    hosts: all
+    tasks:
+      - name: Install pip packages
+        pip:
+          executable: pip3
+          name:
+            - ipython_memwatcher
+            - pyprof2calltree
+            - git+https://github.com/ASPP/prof3to2.git
+            - numba
+            - colorama >= 0.3.9 # numba requires a newer version than ubuntu provides
+            - dask-jobqueue
+            - pudb
+            - pysnooper
+
+      - name: Install Rike's vim config
+        git:
+          repo: 'https://github.com/Debilski/vim-basic.git'
+          dest: /home/student/.vim
+          clone: yes
+          update: yes
+
+      - name: Enable Rike's vim config
+        file:
+          src: .vim/vimrc
+          dest: /home/student/.vimrc
+          state: link
+
+      - name: Install vim plugins
+        command: vim +PlugInstall +qall
+
+      - name: Set up git
+        copy:
+          content: |
+            [core]
+                editor = atom -w
+            [user]
+                name = ASPP Student
+                email = student@localhost
+
+          dest: /home/student/.gitconfig
+
+      - name: Disable screensaver
+        command: gsettings set org.gnome.desktop.session idle-delay 0
+      - name: Disable screen lock
+        command: gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+
+      - name: Make python python3
+        file:
+          src: '/usr/bin/{{ item.src }}'
+          dest: '/home/student/.local/bin/{{ item.dest }}'
+          state: link
+        with_items:
+          - { src: python3,    dest: python }
+          - { src: pdb3,       dest: pdb }
+          - { src: pydoc3,     dest: pydoc }
+          - { src: pygettext3, dest: pygettext }
+          - { src: pip3,       dest: pip }
+
+      - name: Install .bashrc
+        copy:
+          src: 'files/.bashrc'
+          dest: '/home/student/.bashrc'
+        tags: current
+
+      - name: Remove .bash_history
+        file:
+          path: '/home/student/.bash_history'
+          state: absent
+        tags: current

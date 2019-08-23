@@ -1,0 +1,21 @@
+---
+  - name: Create student user
+    remote_user: root
+    vars_files:
+      - passwords.yml
+    hosts: all
+    tasks:
+      - name: Create student user
+        user:
+          name: student
+          comment: ASPP Student
+          groups: admin, adm
+          password: "{{ student_password }}"
+          shell: "/bin/bash"
+
+      - name: Set authorized key taken from file
+        authorized_key:
+          user: student
+          state: present
+          key: "{{ lookup('file', '~/.ssh/id_rsa_aspp.pub') }}"
+          exclusive: no

@@ -1,0 +1,124 @@
+---
+  - name: Provision Software
+    remote_user: root
+    hosts: all
+    tasks:
+      - name: Install distro packages
+        apt:
+          name: "{{ packages }}"
+          update_cache: yes
+          force_apt_get: yes
+        vars:
+          packages:
+            - gcc
+            - g++
+            - make
+            - autoconf
+            - automake
+            - libtool
+            - flex
+            - bison
+            - gdb
+            - gcc-doc
+            - gimp
+            - inkscape
+            - geeqie
+            - graphviz
+            - graphviz-doc
+            - liblz4-tool
+            - firefox
+            - git
+            - gitg
+            - gitk
+            - git-doc
+            - git-gui
+            - git-email
+            - kcachegrind
+            - emacs
+            - vim
+            - gnome-builder
+            - gedit
+            - gedit-plugins
+            - htop
+            - curl
+            - ncdu
+            - moreutils
+            - curl
+            - cython3
+            - debian-archive-keyring
+            - gpg
+            - hwloc
+            - python3-numpy
+            - python3-scipy
+            - python3-zmq
+            - python3-yaml
+            - python3-pytest
+            - python3-dask
+            - python3-mpltoolkits.basemap
+            - python3-distributed
+            - python3-nose
+            - python3-coverage
+            - python3-line-profiler
+            - python3-memory-profiler
+            - python3-pandas
+            - python3-bcolz
+            - python3-plotly
+            - python3-opencv
+            - python3-toolz
+            - python3-joblib
+            - python3-sklearn
+            - python3-sklearn-pandas
+            - python3-scipy
+            - python3-matplotlib
+            - python3-matplotlib-venn
+            - python3-willow
+            - python3-pyflakes
+            - python3-sphinx
+            - python3-sphinx-rtd-theme
+            - python3-pytest
+            - python3-pytest-pep8
+            - python3-pytest-pylint
+            - python3-pytest-cov
+            - python3-mpi4py
+            - python3-imageio
+            - python3-h5py
+            - python3-skimage
+            - python3-tweepy
+            - cufflinks
+            - runsnakerun
+            - libopenblas-base
+            - libopenblas-dev
+            - flite
+            - bloscpack
+
+      - name: Install desktop
+        apt:
+          name: ubuntu-desktop
+          policy_rc_d: 101
+          force_apt_get: yes
+
+      - name: Install atom
+        apt:
+          deb: https://atom.io/download/deb
+          force_apt_get: yes
+          # todo: conditionalize on atom
+
+      - name: Install visualstudio
+        apt:
+          deb: https://go.microsoft.com/fwlink/?LinkID=760868
+          force_apt_get: yes
+          # todo: conditionalize on code
+
+      - name: Setup /etc/gdm3/custom.conf
+        copy:
+          src: files/custom.conf
+          dest: /etc/gdm3/custom.conf
+
+      - name: Setup /etc/firefox/sysprefs.js
+        copy:
+          src: files/sysprefs.js
+          dest: /etc/firefox/sysprefs.js
+
+      - name: Set timezone to Europe/Rome
+        timezone:
+          name: Europe/Rome
