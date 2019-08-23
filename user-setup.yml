@@ -18,6 +18,7 @@
             - pudb
             - pysnooper
             - altair
+            - networkx >= 2.3
 
       - name: Install Rike's vim config
         git:
