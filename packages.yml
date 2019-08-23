@@ -33,6 +33,7 @@
             - git-doc
             - git-gui
             - git-email
+            - tig
             - kcachegrind
             - emacs
             - vim
