@@ -87,6 +87,7 @@
             - python3-tweepy
             - python3-xlrd
             - python3-seaborn
+            - python3-venv
             - cufflinks
             - runsnakerun
             - libopenblas-base

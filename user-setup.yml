@@ -67,10 +67,8 @@
         copy:
           src: 'files/.bashrc'
           dest: '/home/student/.bashrc'
-        tags: current
 
       - name: Remove .bash_history
         file:
           path: '/home/student/.bash_history'
           state: absent
-        tags: current
