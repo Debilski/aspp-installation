@@ -81,3 +81,10 @@
         file:
           path: '/home/student/.bash_history'
           state: absent
+        tags: cleanup
+
+      - name: Remove .ipynb_checkpoints/
+        file:
+          path: '/home/student/.ipynb_checkpoints/'
+          state: absent
+        tags: cleanup
