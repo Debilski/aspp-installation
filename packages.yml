@@ -8,6 +8,7 @@
           name: "{{ packages }}"
           update_cache: yes
           force_apt_get: yes
+        tags: packages
         vars:
           packages:
             - gcc
@@ -61,7 +62,6 @@
             - python3-coverage
             - python3-line-profiler
             - python3-memory-profiler
-            - python3-pandas
             - python3-bcolz
             - python3-plotly
             - python3-opencv
@@ -96,6 +96,7 @@
             - bloscpack
 
       - name: Install desktop
+        tags: packages
         apt:
           name: ubuntu-desktop
           policy_rc_d: 101
