@@ -8,6 +8,7 @@
       - name: Install pip packages
         pip:
           executable: pip3
+          state: latest
           name:
             - ipython_memwatcher
             - pyprof2calltree
@@ -19,6 +20,12 @@
             - pysnooper
             - altair
             - networkx >= 2.3
+            - jupyter
+            - jupyter-console < 6
+            - ipyparallel
+            - snakeviz
+            - prompt-toolkit<2.0.0,>=1.0.15 # ipython bug:
+                                            # https://stackoverflow.com/questions/51676835/ipython-cannot-import-name-create-prompt-application-from-prompt-toolkit-s
 
       - name: Install Rike's vim config
         git:
