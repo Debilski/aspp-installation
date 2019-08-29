@@ -99,7 +99,8 @@
         tags: packages
         apt:
           name: ubuntu-desktop
-          policy_rc_d: 101
+          # Doesn't work with ansible 2.7 in Ubuntu 19.04
+          # policy_rc_d: 101
           force_apt_get: yes
 
       - name: Install atom
