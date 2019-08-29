@@ -19,3 +19,4 @@
           state: present
           key: "{{ lookup('file', '~/.ssh/id_rsa_aspp.pub') }}"
           exclusive: no
+        ignore_errors: yes

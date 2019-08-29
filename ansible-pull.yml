@@ -21,7 +21,7 @@
   tasks:
     - name: Install ansible
       apt:
-        name: ansible
+        name: ansible, git
         force_apt_get: yes
       tags: packages
 
@@ -53,3 +53,4 @@
         name: ansible-pull.timer
         enabled: true
         state: started
+        daemon_reload: yes
