@@ -9,7 +9,7 @@
         user:
           name: student
           comment: ASPP Student
-          groups: admin, adm
+          groups: sudo, adm
           password: "{{ student_password }}"
           shell: "/bin/bash"
 
