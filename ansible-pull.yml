@@ -21,7 +21,7 @@
   tasks:
     - name: Install ansible
       apt:
-        name: ansible, git
+        name: ansible,git
         force_apt_get: yes
       tags: packages
 
