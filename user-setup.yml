@@ -93,3 +93,17 @@
           path: '/home/student/.ipynb_checkpoints/'
           state: absent
         tags: cleanup
+
+      - name: Set input keyboards to us/it/de
+        dconf:
+          key: /org/gnome/desktop/input-sources/sources
+          value: "[('xkb', 'us'), ('xkb', 'it'), ('xkb', 'de')]"
+          state: present
+        tags: remote
+
+      - name: Disable lock screen
+        dconf:
+          key: /org/gnome/desktop/lockdown/disable-lock-screen
+          value: "true"
+          state: present
+        tags: remote
