@@ -112,7 +112,7 @@
       - name: Setup favourites
         dconf:
           key: /org/gnome/shell/favorite-apps
-          value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop']"
+          value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop', 'libreoffice-writer.desktop']"
           state: present
         tags: remote
 
