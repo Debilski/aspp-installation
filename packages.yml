@@ -106,12 +106,14 @@
           force_apt_get: yes
 
       - name: Install atom
+        tags: packages
         apt:
           deb: https://atom.io/download/deb
           force_apt_get: yes
           # todo: conditionalize on atom
 
       - name: Install visualstudio
+        tags: packages
         apt:
           deb: https://go.microsoft.com/fwlink/?LinkID=760868
           force_apt_get: yes
@@ -121,15 +123,18 @@
         copy:
           src: files/custom.conf
           dest: /etc/gdm3/custom.conf
+        tags: remote
 
       - name: Setup /etc/firefox/sysprefs.js
         copy:
           src: files/sysprefs.js
           dest: /etc/firefox/sysprefs.js
+        tags: remote
 
       - name: Set timezone to Europe/Rome
         timezone:
           name: Europe/Rome
+        tags: remote
 
       - name: Set language to English
         copy:

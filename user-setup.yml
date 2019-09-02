@@ -38,6 +38,7 @@
           dest: /home/student/.vim
           clone: yes
           update: yes
+        tags: remote
 
       - name: Enable Rike's vim config
         file:
