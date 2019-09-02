@@ -128,3 +128,10 @@
       - name: Set timezone to Europe/Rome
         timezone:
           name: Europe/Rome
+
+      - name: Set language to English
+        copy:
+          content: |
+            LANG=en_US.UTF-8
+          dest: /etc/locale.conf
+        tags: remote
