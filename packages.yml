@@ -103,11 +103,12 @@
             - flite
             - bloscpack
 
-      - name: Install desktop
+      - name: Install latest git
         tags: packages
         apt:
           name: git
           state: latest
+          force_apt_get: yes
         tags: current
 
       - name: Install desktop
