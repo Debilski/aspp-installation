@@ -3,6 +3,12 @@
     remote_user: root
     hosts: all
     tasks:
+      - name: Add git ppa
+        tags: packages
+        apt_repository:
+          repo: 'ppa:git-core/ppa'
+          state: present
+
       - name: Install distro packages
         apt:
           name: "{{ packages }}"
@@ -96,6 +102,13 @@
             - libopenblas-dev
             - flite
             - bloscpack
+
+      - name: Install desktop
+        tags: packages
+        apt:
+          name: git
+          state: latest
+        tags: current
 
       - name: Install desktop
         tags: packages
