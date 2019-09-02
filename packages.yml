@@ -62,6 +62,7 @@
             - python3-yaml
             - python3-pytest
             - python3-dask
+            - python3-graphviz
             - python3-mpltoolkits.basemap
             - python3-distributed
             - python3-nose
