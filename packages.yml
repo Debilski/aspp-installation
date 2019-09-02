@@ -141,6 +141,8 @@
           content: |
             LANG=en_US.UTF-8
           dest: /etc/locale.conf
+
+      - name: Set language to English
         copy:
           content: |
             LANG=en_US.UTF-8
