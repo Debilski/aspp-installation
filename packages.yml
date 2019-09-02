@@ -141,4 +141,8 @@
           content: |
             LANG=en_US.UTF-8
           dest: /etc/locale.conf
+        copy:
+          content: |
+            LANG=en_US.UTF-8
+          dest: /etc/default/locale
         tags: remote
