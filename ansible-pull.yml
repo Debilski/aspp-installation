@@ -29,6 +29,7 @@
       file:
         path: /usr/local/lib/systemd/system/
         state: directory
+      tags: remote
 
     - name: Install timer file
       copy:
@@ -39,6 +40,7 @@
 
           [Install]
           WantedBy=default.target
+      tags: remote
 
     - name: Install service file
       copy:
@@ -47,6 +49,7 @@
           [Service]
           Type=oneshot
           ExecStart=ansible-pull -i localhost, -U {{ repo_url }} --only-if-changed -t {{ pull_tags }} all.yml
+      tags: remote
 
     - name: Enable timer
       systemd:
@@ -54,3 +57,4 @@
         enabled: true
         state: started
         daemon_reload: yes
+      tags: remote
