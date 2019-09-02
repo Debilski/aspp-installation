@@ -109,7 +109,6 @@
           name: git
           state: latest
           force_apt_get: yes
-        tags: current
 
       - name: Install desktop
         tags: packages
