@@ -11,7 +11,7 @@
   vars:
     schedule: |
       OnBootSec=20 s
-      OnUnitInactiveSec=30 min
+      OnUnitInactiveSec=10 min
       RandomizedDelaySec=30 s
 
     repo_url: https://github.com/aspp/installation
