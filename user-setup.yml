@@ -27,6 +27,7 @@
             - ipyparallel
             - ipython >=6, <7
             - snakeviz
+            - bokeh
             - prompt-toolkit<2.0.0,>=1.0.15 # ipython bug:
                                             # https://stackoverflow.com/questions/51676835/ipython-cannot-import-name-create-prompt-application-from-prompt-toolkit-s
             - vega_datasets
