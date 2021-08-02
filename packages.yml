@@ -112,6 +112,12 @@
           state: latest
           force_apt_get: yes
 
+      - name: Add /etc/gitconfig
+        copy:
+          src: files/gitconfig
+          dest: /etc/gitconfig
+        tags: packages
+
       - name: Install desktop
         tags: packages
         apt:
