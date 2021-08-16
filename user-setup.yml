@@ -89,10 +89,16 @@
           - { src: pip3,       dest: pip }
           - { src: pytest-3,   dest: pytest }
 
-      - name: Install .bashrc
+      - name: Install .bashrc (Ubuntu)
+        when: ansible_distribution == "Ubuntu"
         copy:
           src: 'files/.bashrc'
           dest: '/home/student/.bashrc'
+
+      - name: Install .bashrc.d/
+        copy:
+          src: 'files/bashrc.d/'
+          dest: '/home/student/.bashrc.d/'
 
       - name: Remove .bash_history
         file:
