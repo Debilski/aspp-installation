@@ -115,7 +115,6 @@
       - name: Set input keyboards to us/it/de
         # This uses dbus-run-session which seems to be an Ubuntu invention.
         # TODO: find a replacement.
-        when: ansible_distribution == "Ubuntu"
         dconf:
           key: /org/gnome/desktop/input-sources/sources
           value: "[('xkb', 'us'), ('xkb', 'it'), ('xkb', 'de')]"
@@ -123,7 +122,6 @@
         tags: remote
 
       - name: Disable lock screen
-        when: ansible_distribution == "Ubuntu"
         dconf:
           key: /org/gnome/desktop/lockdown/disable-lock-screen
           value: "true"
@@ -131,7 +129,6 @@
         tags: remote
 
       - name: Setup favourites
-        when: ansible_distribution == "Ubuntu"
         dconf:
           key: /org/gnome/shell/favorite-apps
           value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop', 'libreoffice-writer.desktop']"

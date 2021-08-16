@@ -220,6 +220,9 @@
             # For pelita testing
             - xauth
 
+            # For dconf ansible module
+            - dbus-tools
+
       - name: Allow password authentication (Fedora)
         when: ansible_distribution == "Fedora"
         copy:
