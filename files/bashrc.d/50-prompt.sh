@@ -78,9 +78,13 @@ else
     source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
+if [ -n "$SSH_CLIENT" ] || systemd-detect-virt -q --container 2>/dev/null; then
+    PROMPT_SHOW_HOST=yes
+fi
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 export GIT_PS1_DESCRIBE_STYLE="default"
 export GIT_PS1_SHOWCOLORHINTS=1
-PROMPT_COMMAND='__git_ps1 "${VIRTUAL_ENV:+($(basename "${VIRTUAL_ENV}")) }\u@\h:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
+PROMPT_COMMAND='__git_ps1 "${VIRTUAL_ENV:+($(basename "${VIRTUAL_ENV}")) }${PROMPT_SHOW_HOST+\[\033[01;33m\]\u@\h\[\033[00m\]:}\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
