@@ -5,8 +5,27 @@
     become: yes
     hosts: all
     tasks:
-      - name: Install pip packages
+      - name: Install pip packages (Ubuntu)
         tags: packages
+        when: ansible_distribution == "Ubuntu"
+        pip:
+          executable: pip3
+          state: latest
+          name:
+            - colorama >= 0.3.9 # numba requires a newer version than ubuntu provides
+            - pandas >= 0.25
+            - networkx >= 2.3
+            - jupyter
+            - jupyter-console < 6
+            - pysnooper
+            - ipython >=6, <7
+            - bokeh
+            - prompt-toolkit<2.0.0,>=1.0.15 # ipython bug:
+                                            # https://stackoverflow.com/questions/51676835/ipython-cannot-import-name-create-prompt-application-from-prompt-toolkit-s
+
+      - name: Install pip packages (Ubuntu)
+        tags: packages
+        when: ansible_distribution == "Ubuntu"
         pip:
           executable: pip3
           state: latest
@@ -15,21 +34,11 @@
             - pyprof2calltree
             - git+https://github.com/ASPP/prof3to2.git
             - numba
-            - colorama >= 0.3.9 # numba requires a newer version than ubuntu provides
-            - pandas >= 0.25
             - dask-jobqueue
             - pudb
-            - pysnooper
             - altair
-            - networkx >= 2.3
-            - jupyter
-            - jupyter-console < 6
             - ipyparallel
-            - ipython >=6, <7
             - snakeviz
-            - bokeh
-            - prompt-toolkit<2.0.0,>=1.0.15 # ipython bug:
-                                            # https://stackoverflow.com/questions/51676835/ipython-cannot-import-name-create-prompt-application-from-prompt-toolkit-s
             - vega_datasets
             - vega
 
@@ -71,6 +80,7 @@
           src: '/usr/bin/{{ item.src }}'
           dest: '/home/student/.local/bin/{{ item.dest }}'
           state: link
+        when: ansible_distribution == "Ubuntu"
         with_items:
           - { src: python3,    dest: python }
           - { src: pdb3,       dest: pdb }
@@ -97,6 +107,9 @@
         tags: cleanup
 
       - name: Set input keyboards to us/it/de
+        # This uses dbus-run-session which seems to be an Ubuntu invention.
+        # TODO: find a replacement.
+        when: ansible_distribution == "Ubuntu"
         dconf:
           key: /org/gnome/desktop/input-sources/sources
           value: "[('xkb', 'us'), ('xkb', 'it'), ('xkb', 'de')]"
@@ -104,6 +117,7 @@
         tags: remote
 
       - name: Disable lock screen
+        when: ansible_distribution == "Ubuntu"
         dconf:
           key: /org/gnome/desktop/lockdown/disable-lock-screen
           value: "true"
@@ -111,9 +125,9 @@
         tags: remote
 
       - name: Setup favourites
+        when: ansible_distribution == "Ubuntu"
         dconf:
           key: /org/gnome/shell/favorite-apps
           value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop', 'libreoffice-writer.desktop']"
           state: present
         tags: remote
-

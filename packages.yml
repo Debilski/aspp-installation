@@ -5,16 +5,18 @@
     tasks:
       - name: Add git ppa
         tags: packages
+        when: ansible_distribution == "Ubuntu"
         apt_repository:
           repo: 'ppa:git-core/ppa'
           state: present
 
-      - name: Install distro packages
+      - name: Install distro packages (Ubuntu)
         apt:
           name: "{{ packages }}"
           update_cache: yes
           force_apt_get: yes
         tags: packages
+        when: ansible_distribution == "Ubuntu"
         vars:
           packages:
             - gcc
@@ -105,8 +107,133 @@
             - flite
             - bloscpack
 
+      - name: Install distro packages (Fedora)
+        dnf:
+          name: "{{ packages }}"
+        tags: packages
+        when: ansible_distribution == "Fedora"
+        vars:
+          packages:
+            - gcc
+            - g++
+            - make
+            - autoconf
+            - automake
+            - libtool
+            - flex
+            - bison
+            - gdb
+            # - gcc-doc
+            - gimp
+            - inkscape
+            - geeqie
+            - graphviz
+            - graphviz-doc
+            - lz4
+            - firefox
+            - git
+            - gitg
+            - gitk
+            - git-core-doc
+            - git-gui
+            - git-email
+            - tig
+            - kcachegrind
+            - emacs
+            - vim
+            - gnome-builder
+            - gedit
+            - gedit-plugins
+            - htop
+            - curl
+            - ncdu
+            - moreutils
+            - curl
+            - python3-Cython
+            - gnupg2
+            - hwloc
+            - screen
+            - python3-numpy
+            - python3-scipy
+            - python3-blosc
+            - python3-zmq
+            - python3-yaml
+            - python3-pytest
+            - python3-dask
+            - python3-dask+array
+            - python3-dask+bag
+            - python3-dask+dataframe
+            - python3-dask+delayed
+            - python3-graphviz
+            # - python3-mpltoolkits.basemap
+            - python3-nose
+            - python3-coverage
+            # - python3-line-profiler
+            # - python3-memory-profiler
+            # - python3-bcolz
+            - python3-plotly
+            - python3-opencv
+            - python3-toolz
+            - python3-joblib
+            - python3-scikit-learn
+            - python3-scipy
+            - python3-matplotlib
+            # - python3-matplotlib-venn
+            # - python3-willow
+            - python3-pyflakes
+            - python3-sphinx
+            - python3-sphinx_rtd_theme
+            - python3-pytest
+            - python3-pytest-flake8
+            - python3-pytest-flakes
+            - python3-pytest-mpi
+            - python3-pytest-cov
+            - python3-mpi4py-mpich
+            - python3-mpi4py-openmpi
+            - python3-imageio
+            - python3-h5py
+            - python3-scikit-image
+            # - python3-tweepy
+            - python3-xlrd
+            - python3-seaborn
+            - python3-psutil
+            # - cufflinks
+            # - runsnakerun
+            # - libopenblas-base: we probably want to pull in all blas implementations
+            #                     and provide instructions how to switch using flexiblas.
+            - flexiblas-devel
+            - flite
+            # - bloscpack
+
+            # Installed using pip in Ubuntu
+            - python3-colorama
+            - python3-pandas
+            - python3-networkx
+            - python3-jupyter-client
+            - python3-jupyter-console
+            - python3-jupyter-c-kernel
+            - python3-jupyter-sphinx
+            - python3-ipython
+            - python3-bokeh
+            - python3-pysnooper
+
+      - name: Allow password authentication (Fedora)
+        when: ansible_distribution == "Fedora"
+        copy:
+          content: |
+             PasswordAuthentication yes
+
+          dest: /etc/ssh/sshd_config.d/80-password-auth.conf
+
+      - name: Reload sshd config
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.systemd:
+          name: sshd.service
+          state: reloaded
+
       - name: Install latest git
         tags: packages
+        when: ansible_distribution == "Ubuntu"
         apt:
           name: git
           state: latest
@@ -120,6 +247,7 @@
 
       - name: Install desktop
         tags: packages
+        when: ansible_distribution == "Ubuntu"
         apt:
           name: ubuntu-desktop
           # Doesn't work with ansible 2.7 in Ubuntu 19.04
@@ -128,6 +256,7 @@
 
       - name: Install atom
         tags: packages
+        when: ansible_distribution == "Ubuntu"
         apt:
           deb: https://atom.io/download/deb
           force_apt_get: yes
@@ -135,21 +264,30 @@
 
       - name: Install visualstudio
         tags: packages
+        when: ansible_distribution == "Ubuntu"
         apt:
           deb: https://go.microsoft.com/fwlink/?LinkID=760868
           force_apt_get: yes
           # todo: conditionalize on code
 
-      - name: Setup /etc/gdm3/custom.conf
+      - name: Set up autologin
+        when: ansible_distribution == "Ubuntu"
         copy:
           src: files/custom.conf
-          dest: /etc/gdm3/custom.conf
+          dest: /etc/gdm3/
+        tags: remote
+
+      - name: Set up autologin
+        when: ansible_distribution == "Fedora"
+        copy:
+          src: files/custom.conf
+          dest: /etc/gdm/
         tags: remote
 
       - name: Setup /etc/firefox/sysprefs.js
         copy:
           src: files/sysprefs.js
-          dest: /etc/firefox/sysprefs.js
+          dest: /etc/firefox/
         tags: remote
 
       - name: Set timezone to Europe/Rome
@@ -169,3 +307,4 @@
             LANG=en_US.UTF-8
           dest: /etc/default/locale
         tags: remote
+        when: ansible_distribution == "Ubuntu"

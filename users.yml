@@ -6,10 +6,20 @@
     hosts: all
     tasks:
       - name: Create student user
+        when: ansible_distribution == "Ubuntu"
         user:
           name: student
           comment: ASPP Student
-          groups: sudo, adm
+          groups: adm, sudo
+          password: "{{ student_password }}"
+          shell: "/bin/bash"
+
+      - name: Create student user
+        when: ansible_distribution == "Fedora"
+        user:
+          name: student
+          comment: ASPP Student
+          groups: adm, wheel
           password: "{{ student_password }}"
           shell: "/bin/bash"
 
