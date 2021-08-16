@@ -217,6 +217,9 @@
             - python3-bokeh
             - python3-pysnooper
 
+            # For pelita testing
+            - xauth
+
       - name: Allow password authentication (Fedora)
         when: ansible_distribution == "Fedora"
         copy:
@@ -224,6 +227,14 @@
              PasswordAuthentication yes
 
           dest: /etc/ssh/sshd_config.d/80-password-auth.conf
+
+      - name: Allow X forwarding (Fedora)
+        when: ansible_distribution == "Fedora"
+        copy:
+          content: |
+             ForwardX11 yes
+
+          dest: /etc/ssh/ssh_config.d/80-x-forwarding.conf
 
       - name: Reload sshd config
         when: ansible_distribution == "Fedora"

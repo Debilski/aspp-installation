@@ -27,6 +27,6 @@
         authorized_key:
           user: student
           state: present
-          key: "{{ lookup('file', '~/.ssh/id_rsa_aspp.pub') }}"
+          key: "{{ lookup('file', '~/.ssh/id_ecdsa_aspp.pub') }}"
           exclusive: no
         ignore_errors: yes
