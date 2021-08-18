@@ -3,13 +3,6 @@
     remote_user: root
     hosts: all
     tasks:
-      - name: Add git ppa
-        tags: packages
-        when: ansible_distribution == "Ubuntu"
-        apt_repository:
-          repo: 'ppa:git-core/ppa'
-          state: present
-
       - name: Install distro packages (Ubuntu)
         apt:
           name: "{{ packages }}"
@@ -59,11 +52,20 @@
             - gpg
             - hwloc
             - screen
+            - python3-pip
             - python3-numpy
             - python3-scipy
             - python3-zmq
             - python3-yaml
             - python3-pytest
+            - python3-colorama
+            - python3-networkx
+            - jupyter-client
+            - jupyter-console
+            - jupyter-notebook
+            - jupyter-nbconvert
+            - jupyter-qtconsole
+            - python3-ipython
             - python3-dask
             - python3-graphviz
             - python3-mpltoolkits.basemap
@@ -99,13 +101,15 @@
             - python3-seaborn
             - python3-venv
             - python3-psutil
-            - python-psutil
             - cufflinks
             - runsnakerun
             - libopenblas-base
             - libopenblas-dev
             - flite
-            - bloscpack
+            # - bloscpack
+
+            # For pelita testing
+            - xauth
 
       - name: Install distro packages (Fedora)
         dnf:
@@ -158,6 +162,13 @@
             - python3-blosc
             - python3-zmq
             - python3-yaml
+            - python3-colorama
+            - python3-networkx
+            - python3-jupyter-client
+            - python3-jupyter-console
+            - python3-jupyter-c-kernel
+            - python3-jupyter-sphinx
+            - python3-ipython
             - python3-pytest
             - python3-dask
             - python3-dask+array
@@ -206,14 +217,7 @@
             # - bloscpack
 
             # Installed using pip in Ubuntu
-            - python3-colorama
             - python3-pandas
-            - python3-networkx
-            - python3-jupyter-client
-            - python3-jupyter-console
-            - python3-jupyter-c-kernel
-            - python3-jupyter-sphinx
-            - python3-ipython
             - python3-bokeh
             - python3-pysnooper
 

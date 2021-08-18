@@ -12,16 +12,9 @@
           executable: pip3
           state: latest
           name:
-            - colorama >= 0.3.9 # numba requires a newer version than ubuntu provides
             - pandas >= 0.25
-            - networkx >= 2.3
-            - jupyter
-            - jupyter-console < 6
             - pysnooper
-            - ipython >=6, <7
             - bokeh
-            - prompt-toolkit<2.0.0,>=1.0.15 # ipython bug:
-                                            # https://stackoverflow.com/questions/51676835/ipython-cannot-import-name-create-prompt-application-from-prompt-toolkit-s
 
       - name: Install pip packages (Ubuntu)
         tags: packages
@@ -113,8 +106,6 @@
         tags: cleanup
 
       - name: Set input keyboards to us/it/de
-        # This uses dbus-run-session which seems to be an Ubuntu invention.
-        # TODO: find a replacement.
         dconf:
           key: /org/gnome/desktop/input-sources/sources
           value: "[('xkb', 'us'), ('xkb', 'it'), ('xkb', 'de')]"
