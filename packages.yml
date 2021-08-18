@@ -228,7 +228,6 @@
             - dbus-tools
 
       - name: Allow password authentication (Fedora)
-        when: ansible_distribution == "Fedora"
         copy:
           content: |
              PasswordAuthentication yes
@@ -244,7 +243,6 @@
           dest: /etc/ssh/ssh_config.d/80-x-forwarding.conf
 
       - name: Reload sshd config
-        when: ansible_distribution == "Fedora"
         ansible.builtin.systemd:
           name: sshd.service
           state: reloaded
