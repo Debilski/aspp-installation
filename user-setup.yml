@@ -75,12 +75,12 @@
           state: link
         when: ansible_distribution == "Ubuntu"
         with_items:
-          - { src: python3,    dest: python }
           - { src: pdb3,       dest: pdb }
           - { src: pydoc3,     dest: pydoc }
           - { src: pygettext3, dest: pygettext }
           - { src: pip3,       dest: pip }
           - { src: pytest-3,   dest: pytest }
+          - { src: ipython3,   dest: ipython }
 
       - name: Install .bashrc (Ubuntu)
         when: ansible_distribution == "Ubuntu"

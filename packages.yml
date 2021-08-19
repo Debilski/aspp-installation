@@ -52,6 +52,7 @@
             - gpg
             - hwloc
             - screen
+            - python-is-python3
             - python3-pip
             - python3-numpy
             - python3-scipy
@@ -66,6 +67,7 @@
             - jupyter-nbconvert
             - jupyter-qtconsole
             - python3-ipython
+            - ipython3
             - python3-dask
             - python3-graphviz
             - python3-mpltoolkits.basemap
