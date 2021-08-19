@@ -3,6 +3,13 @@
     remote_user: root
     hosts: all
     tasks:
+      - name: Add git ppa
+        tags: packages
+        when: ansible_distribution == "Ubuntu"
+        apt_repository:
+          repo: 'ppa:git-core/ppa'
+          state: present
+
       - name: Install distro packages (Ubuntu)
         apt:
           name: "{{ packages }}"
