@@ -60,6 +60,8 @@
             [user]
                 name = ASPP Student
                 email = student@localhost
+            [init]
+                defaultBranch = main
 
           dest: /home/student/.gitconfig
 
