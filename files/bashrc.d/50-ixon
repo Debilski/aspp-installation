@@ -1,0 +1,3 @@
+## CTRL+S freezes the terminal (use CTRL+A to unfreeze)
+## We do not want this behaviour so we disable it
+stty -ixon
