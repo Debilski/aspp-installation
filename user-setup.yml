@@ -56,7 +56,7 @@
         copy:
           content: |
             [core]
-                editor = atom -w
+                editor = micro
             [user]
                 name = ASPP Student
                 email = student@localhost

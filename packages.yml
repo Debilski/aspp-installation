@@ -53,6 +53,7 @@
             - curl
             - ncdu
             - moreutils
+            - micro
             - curl
             - cython3
             - debian-archive-keyring
@@ -161,6 +162,7 @@
             - curl
             - ncdu
             - moreutils
+            - micro
             - curl
             - python3-Cython
             - gnupg2
