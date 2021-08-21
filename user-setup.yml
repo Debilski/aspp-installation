@@ -107,10 +107,10 @@
           state: absent
         tags: cleanup
 
-      - name: Set input keyboards to us/it/de
+      - name: Set input keyboards to us/fr/de
         dconf:
           key: /org/gnome/desktop/input-sources/sources
-          value: "[('xkb', 'us'), ('xkb', 'it'), ('xkb', 'de')]"
+          value: "[('xkb', 'us'), ('xkb', 'fr'), ('xkb', 'de')]"
           state: present
         tags: remote
 
