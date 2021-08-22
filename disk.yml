@@ -1,0 +1,23 @@
+---
+  - name: Disk setup
+    remote_user: root
+    hosts: all
+    tasks:
+      - name: Extend root to 200GB
+        tags: remote
+        script: files/resize-root.sh
+        args:
+          creates: /etc/.root-resized
+
+      - name: Add nm profile
+        tags: remote
+        when: ansible_distribution == "Ubuntu"
+        copy:
+          src: files/UBx-invites.nmconnection
+          dest: /etc/NetworkManager/system-connections/
+        tags: remote
+
+      - name: Add nm profile
+        tags: remote
+        when: ansible_distribution == "Ubuntu"
+        command: nmcli conn reload
