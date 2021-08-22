@@ -16,14 +16,14 @@
 
     repo_url: https://github.com/aspp/installation
 
-    pull_tags: packages,remote
+    pull_tags: remote
 
   tasks:
     - name: Install ansible
       apt:
         name: ansible,git
         force_apt_get: yes
-      tags: packages
+      tags: packages,remote
 
     - name: Create unit directory
       file:
