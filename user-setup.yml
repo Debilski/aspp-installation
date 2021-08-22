@@ -75,6 +75,12 @@
         tags: remote
         command: gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 
+      - name: Make ~/.local/bin/ directory
+        file:
+          dest: '/home/student/.local/bin/'
+          state: directory
+        tags: remote
+
       - name: Make python python3
         file:
           src: '/usr/bin/{{ item.src }}'
