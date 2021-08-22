@@ -321,6 +321,7 @@
           content: |
             LANG=en_US.UTF-8
           dest: /etc/locale.conf
+        tags: remote
 
       - name: Set language to English
         copy:

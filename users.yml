@@ -13,6 +13,7 @@
           groups: adm, sudo
           password: "{{ student_password }}"
           shell: "/bin/bash"
+        tags: remote
 
       - name: Create student user
         when: ansible_distribution == "Fedora"
@@ -22,6 +23,7 @@
           groups: adm, wheel
           password: "{{ student_password }}"
           shell: "/bin/bash"
+        tags: remote
 
       - name: Set authorized key taken from file
         authorized_key:

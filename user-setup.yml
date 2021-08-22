@@ -48,11 +48,14 @@
           src: .vim/vimrc
           dest: /home/student/.vimrc
           state: link
+        tags: remote
 
       - name: Install vim plugins
         command: vim +PlugInstall +qall
+        tags: remote
 
       - name: Set up git
+        tags: remote
         copy:
           content: |
             [core]
@@ -66,8 +69,10 @@
           dest: /home/student/.gitconfig
 
       - name: Disable screensaver
+        tags: remote
         command: gsettings set org.gnome.desktop.session idle-delay 0
       - name: Disable screen lock
+        tags: remote
         command: gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 
       - name: Make python python3
@@ -83,17 +88,20 @@
           - { src: pip3,       dest: pip }
           - { src: pytest-3,   dest: pytest }
           - { src: ipython3,   dest: ipython }
+        tags: remote
 
       - name: Install .bashrc (Ubuntu)
         when: ansible_distribution == "Ubuntu"
         copy:
           src: 'files/.bashrc'
           dest: '/home/student/.bashrc'
+        tags: remote
 
       - name: Install .bashrc.d/
         copy:
           src: 'files/bashrc.d/'
           dest: '/home/student/.bashrc.d/'
+        tags: remote
 
       - name: Remove .bash_history
         file:
