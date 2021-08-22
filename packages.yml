@@ -249,6 +249,7 @@
             - dbus-tools
 
       - name: Allow password authentication (Fedora)
+        when: ansible_distribution == "Fedora"
         copy:
           content: |
              PasswordAuthentication yes
