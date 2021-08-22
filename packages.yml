@@ -131,6 +131,15 @@
             # For pelita testing
             - xauth
 
+      - name: Remove update-notifier package (Ubuntu)
+        apt:
+          name: update-notifier
+          update_cache: yes
+          force_apt_get: yes
+          state: absent
+        tags: packages
+        when: ansible_distribution == "Ubuntu"
+
       - name: Install distro packages (Fedora)
         dnf:
           name: "{{ packages }}"
