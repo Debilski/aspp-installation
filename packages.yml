@@ -328,7 +328,7 @@
         tags: packages
         register: atom_exists
       - name: Install atom
-        tags: packages
+        tags: packages2
         when: not atom_exists.stat.exists and ansible_distribution == "Ubuntu"
         apt:
           deb: https://atom.io/download/deb
