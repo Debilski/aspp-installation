@@ -54,6 +54,7 @@
             - vim
             - micro
             - curl
+            - python3-psutil  # for ansible
 
       - name: Install distro packages (Ubuntu)
         apt:
@@ -144,7 +145,6 @@
             - python3-xlrd
             - python3-seaborn
             - python3-venv
-            - python3-psutil
             - cufflinks
             - runsnakerun
             - libopenblas-base
