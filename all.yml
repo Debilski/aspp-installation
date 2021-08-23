@@ -1,6 +1,6 @@
 ---
 - import_playbook: disk.yml
+- import_playbook: ansible-pull.yml
 - import_playbook: packages.yml
 - import_playbook: users.yml
-- import_playbook: ansible-pull.yml
 - import_playbook: user-setup.yml
