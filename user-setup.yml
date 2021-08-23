@@ -141,3 +141,27 @@
           value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop', 'libreoffice-writer.desktop']"
           state: present
         tags: remote
+
+      - name: Clone repos (Tuesday I)
+        tags: clone,remote
+        git:
+          repo: https://github.com/ASPP/2021-bordeaux-testing-project
+          dest: /home/student/2021-bordeaux-testing-project
+          clone: yes
+          update: no
+
+      - name: Clone repos (Tuesday II)
+        tags: clone,remote
+        git:
+          repo: https://github.com/ASPP/2021-bordeaux-testing-debugging
+          dest: /home/student/2021-bordeaux-testing-debugging
+          clone: yes
+          update: no
+
+      - name: Clone repos (Tuesday III)
+        tags: clone,remote
+        git:
+          repo: https://github.com/ASPP/2021-bordeaux-advanced-python
+          dest: /home/student/2021-bordeaux-advanced-python
+          clone: yes
+          update: no
