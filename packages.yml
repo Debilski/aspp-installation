@@ -173,7 +173,7 @@
         vars:
           packages:
             - update-notifier
-            - update-ma
+            - update-manager
 
       - name: Install distro packages (Fedora)
         dnf:
