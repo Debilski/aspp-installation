@@ -324,7 +324,7 @@
           force_apt_get: yes
 
       - name: Install atom
-        tags: packages2
+        tags: packages
         when: ansible_distribution == "Ubuntu"
         apt:
           deb: https://atom.io/download/deb
