@@ -20,12 +20,33 @@
 
           dest: /etc/apt/apt.conf.d/20auto-upgrades
 
-      - name: Install distro packages (Ubuntu)
+      - name: Install essential distro packages (Ubuntu)
         apt:
           name: "{{ packages }}"
           update_cache: yes
           force_apt_get: yes
         tags: packages
+        when: ansible_distribution == "Ubuntu"
+        vars:
+          packages:
+            - git
+            - gitg
+            - gitk
+            - git-doc
+            - git-gui
+            - git-email
+            - tig
+            - emacs
+            - vim
+            - micro
+            - curl
+
+      - name: Install distro packages (Ubuntu)
+        apt:
+          name: "{{ packages }}"
+          update_cache: yes
+          force_apt_get: yes
+        tags: packages2
         when: ansible_distribution == "Ubuntu"
         vars:
           packages:
@@ -46,16 +67,7 @@
             - graphviz-doc
             - liblz4-tool
             - firefox
-            - git
-            - gitg
-            - gitk
-            - git-doc
-            - git-gui
-            - git-email
-            - tig
             - kcachegrind
-            - emacs
-            - vim
             - gnome-builder
             - gedit
             - gedit-plugins
@@ -63,8 +75,6 @@
             - curl
             - ncdu
             - moreutils
-            - micro
-            - curl
             - cython3
             - debian-archive-keyring
             - gpg
@@ -308,7 +318,7 @@
           # todo: conditionalize on atom
 
       - name: Install visualstudio
-        tags: packages
+        tags: packages2
         when: ansible_distribution == "Ubuntu"
         apt:
           deb: https://go.microsoft.com/fwlink/?LinkID=760868

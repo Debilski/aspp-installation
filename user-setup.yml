@@ -6,7 +6,7 @@
     hosts: all
     tasks:
       - name: Install pip packages (Ubuntu)
-        tags: packages
+        tags: packages2
         when: ansible_distribution == "Ubuntu"
         pip:
           executable: pip3
