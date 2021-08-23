@@ -323,21 +323,25 @@
           # policy_rc_d: 101
           force_apt_get: yes
 
+      - stat:
+        path: /usr/bin/atom
+        register: atom_exists
       - name: Install atom
         tags: packages
-        when: ansible_distribution == "Ubuntu"
+        when: not atom_exists.stat.exists and ansible_distribution == "Ubuntu"
         apt:
           deb: https://atom.io/download/deb
           force_apt_get: yes
-          # todo: conditionalize on atom
 
+      - stat:
+        path: /usr/bin/code
+        register: code_exists
       - name: Install visualstudio
         tags: packages2
-        when: ansible_distribution == "Ubuntu"
+        when: not code_exists.stat.exists and ansible_distribution == "Ubuntu"
         apt:
           deb: https://go.microsoft.com/fwlink/?LinkID=760868
           force_apt_get: yes
-          # todo: conditionalize on code
 
       - name: Set up autologin
         when: ansible_distribution == "Ubuntu"
