@@ -324,7 +324,7 @@
           force_apt_get: yes
 
       - stat:
-        path: /usr/bin/atom
+          path: /usr/bin/atom
         register: atom_exists
       - name: Install atom
         tags: packages
@@ -334,7 +334,7 @@
           force_apt_get: yes
 
       - stat:
-        path: /usr/bin/code
+          path: /usr/bin/code
         register: code_exists
       - name: Install visualstudio
         tags: packages2
