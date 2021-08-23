@@ -325,6 +325,7 @@
 
       - stat:
           path: /usr/bin/atom
+        tags: packages
         register: atom_exists
       - name: Install atom
         tags: packages
@@ -335,6 +336,7 @@
 
       - stat:
           path: /usr/bin/code
+        tags: packages
         register: code_exists
       - name: Install visualstudio
         tags: packages2
