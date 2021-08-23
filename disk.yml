@@ -11,7 +11,6 @@
 
       - name: Add nm profile
         tags: remote
-        when: ansible_distribution == "Ubuntu"
         copy:
           src: files/UBx-invites.nmconnection
           dest: /etc/NetworkManager/system-connections/
@@ -19,5 +18,11 @@
 
       - name: Add nm profile
         tags: remote
-        when: ansible_distribution == "Ubuntu"
+        copy:
+          src: files/aspp2.nmconnection
+          dest: /etc/NetworkManager/system-connections/
+        tags: remote
+
+      - name: Add nm profile
+        tags: remote
         command: nmcli conn reload
