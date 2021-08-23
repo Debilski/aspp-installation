@@ -48,7 +48,7 @@
         content: |
           [Service]
           Type=oneshot
-          ExecStart=ansible-pull -i localhost, -U {{ repo_url }} -t {{ pull_tags }} all.yml
+          ExecStart=ansible-pull -i localhost, -U {{ repo_url }} --only-if-changed -t {{ pull_tags }} all.yml
           Restart=on-failure
           RestartSec=1min
       tags: remote
