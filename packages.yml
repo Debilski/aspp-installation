@@ -315,7 +315,7 @@
           force_apt_get: yes
 
       - name: Install desktop
-        tags: packages
+        tags: packages2
         when: ansible_distribution == "Ubuntu"
         apt:
           name: ubuntu-desktop
@@ -324,7 +324,7 @@
           force_apt_get: yes
 
       - name: Install atom
-        tags: packages
+        tags: packages2
         when: ansible_distribution == "Ubuntu"
         apt:
           deb: https://atom.io/download/deb
