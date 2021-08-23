@@ -48,8 +48,9 @@
         content: |
           [Service]
           Type=oneshot
-          ExecStart=ansible-pull -i localhost, -U {{ repo_url }} --only-if-changed -t {{ pull_tags }} all.yml
+          ExecStart=ansible-pull -i localhost, -U {{ repo_url }} -t {{ pull_tags }} all.yml
       tags: remote
+      # --only-if-changed
 
     - name: Enable timer
       systemd:
