@@ -20,6 +20,12 @@
 
           dest: /etc/apt/apt.conf.d/20auto-upgrades
 
+      - name: Disable apt-daily
+        tags: remote
+        ansible.builtin.systemd:
+          name: apt-daily.timer
+          state: disabled
+
       - name: Install essential distro packages (Ubuntu)
         apt:
           name: "{{ packages }}"
