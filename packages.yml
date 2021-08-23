@@ -155,6 +155,13 @@
             # For pelita testing
             - xauth
 
+            # In case gnome is weird, the tweak tool may help in adjusting hidden settings
+            - gnome-tweak-tool
+
+            # Optional timers for the status bar (can be helpful for pair-programming)
+            - gnome-shell-pomodoro
+            - gnome-shell-timer
+ 
       - name: Remove updater packages (Ubuntu)
         apt:
           name: "{{ packages }}"
@@ -166,7 +173,7 @@
         vars:
           packages:
             - update-notifier
-            - update-manager
+            - update-ma
 
       - name: Install distro packages (Fedora)
         dnf:
