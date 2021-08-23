@@ -4,6 +4,7 @@ uuid=7d0e87df-2908-4fe4-ba57-f8781ff3bde9
 type=wifi
 interface-name=wlp4s0
 permissions=
+auth-retries=0
 
 [wifi]
 mac-address-blacklist=
