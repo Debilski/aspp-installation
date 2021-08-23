@@ -24,7 +24,8 @@
         tags: remote
         ansible.builtin.systemd:
           name: apt-daily.timer
-          state: disabled
+          state: stopped
+          enabled: false
 
       - name: Install essential distro packages (Ubuntu)
         apt:
