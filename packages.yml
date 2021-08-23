@@ -20,10 +20,17 @@
 
           dest: /etc/apt/apt.conf.d/20auto-upgrades
 
-      - name: Disable apt-daily
+      - name: Disable apt-daily.timer
         tags: remote
         ansible.builtin.systemd:
           name: apt-daily.timer
+          state: stopped
+          enabled: false
+
+      - name: Disable apt-daily service
+        tags: remote
+        ansible.builtin.systemd:
+          name: apt-daily.service
           state: stopped
           enabled: false
 
