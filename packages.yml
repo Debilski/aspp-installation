@@ -55,6 +55,7 @@
             - micro
             - curl
             - python3-psutil  # for ansible
+            - openssh-server
 
       - name: Install distro packages (Ubuntu)
         apt:
