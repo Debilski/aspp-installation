@@ -58,7 +58,7 @@
             - python3-psutil  # for ansible
             - openssh-server
 
-      - name: Install distro packages (Ubuntu)
+      - name: Install distro packages (Ubuntu/Jupyter)
         apt:
           name: "{{ packages }}"
           update_cache: yes
@@ -74,7 +74,7 @@
             - jupyter-qtconsole
             - python3-ipython
 
-      - name: Install distro packages (Ubuntu)
+      - name: Install distro packages (Ubuntu/all else)
         apt:
           name: "{{ packages }}"
           update_cache: yes
