@@ -16,7 +16,7 @@
 
     repo_url: https://github.com/aspp/installation
 
-    pull_tags: remote,packages,packages2
+    pull_tags: remote,packages,packages2,packages3
 
   tasks:
     - name: Install ansible
