@@ -127,7 +127,6 @@
             - python3-graphviz
             - python3-mpltoolkits.basemap
             - python3-distributed
-            - python3-nose
             - python3-coverage
             - python3-line-profiler
             - python3-memory-profiler
