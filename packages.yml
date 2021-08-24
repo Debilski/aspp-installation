@@ -50,6 +50,7 @@
             - git-gui
             - git-email
             - tig
+            - tmux
             - emacs
             - vim
             - micro
