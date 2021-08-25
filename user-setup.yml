@@ -34,6 +34,7 @@
             - snakeviz
             - vega_datasets
             - vega
+            - pelita
 
       - name: Install Rike's vim config
         git:
