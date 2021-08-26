@@ -25,3 +25,5 @@ shopt -s globstar
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+echo $PATH | grep -q ~/.local/bin || export PATH=$HOME/.local/bin:$PATH
