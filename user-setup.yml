@@ -152,3 +152,11 @@
           dest: /home/student/2021-bordeaux-ODD
           clone: yes
           update: no
+
+      - name: Clone repos (Thursday, II)
+        tags: clone,remote
+        git:
+          repo: https://github.com/ASPP/2021-bordeaux-cython-numba
+          dest: /home/student/2021-bordeaux-cython-numba
+          clone: yes
+          update: no
