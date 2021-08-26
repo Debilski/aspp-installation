@@ -143,10 +143,10 @@
           state: present
         tags: remote
 
-      - name: Clone repos (Wednesday)
+      - name: Clone repos (Thursday)
         tags: clone,remote
         git:
-          repo: https://github.com/ASPP/2021-bordeaux-advanced-numpy
-          dest: /home/student/2021-bordeaux-advanced-numpy
+          repo: https://github.com/ASPP/2021-bordeaux-ODD
+          dest: /home/student/2021-bordeaux-ODD
           clone: yes
           update: no
