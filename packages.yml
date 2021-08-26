@@ -134,7 +134,7 @@
             - python3-plotly
             - python3-opencv
             - python3-toolz
-            - python3-joblib
+            # - python3-joblib
             - python3-sklearn
             - python3-sklearn-pandas
             - python3-scipy

@@ -28,6 +28,7 @@
             - git+https://github.com/ASPP/prof3to2.git
             - numba
             - meson >= 0.59
+            - joblib
             - dask-jobqueue
             - pudb
             - altair
