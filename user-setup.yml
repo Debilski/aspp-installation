@@ -27,6 +27,7 @@
             - pyprof2calltree
             - git+https://github.com/ASPP/prof3to2.git
             - numba
+            - meson >= 0.59
             - dask-jobqueue
             - pudb
             - altair
