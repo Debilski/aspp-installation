@@ -95,6 +95,7 @@
           - { src: pip3,       dest: pip }
           - { src: pytest-3,   dest: pytest }
           - { src: ipython3,   dest: ipython }
+          - { src: cython3,    dest: cython }
         tags: packages2
 
       - name: Install .bashrc (Ubuntu)
