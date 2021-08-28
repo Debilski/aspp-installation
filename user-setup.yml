@@ -169,5 +169,5 @@
         tags: remote
 
       - name: Push It
-        tags: remote
+        tags: special
         command: paplay --volume=3000 /home/student/Music/salt-n-pepa-push-it.wav
