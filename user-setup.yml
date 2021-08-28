@@ -161,3 +161,13 @@
           dest: /home/student/2021-bordeaux-cython-numba
           clone: yes
           update: no
+
+      - name: Install wave file
+        copy:
+          src: 'files/salt-n-pepa-push-it.wav'
+          dest: '/home/student/Music/'
+        tags: remote
+
+      - name: Push It
+        tags: special
+        command: paplay --volume=3000 /home/student/Music/salt-n-pepa-push-it.wav
