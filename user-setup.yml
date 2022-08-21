@@ -6,7 +6,7 @@
     hosts: all
     tasks:
       - name: Install pip packages (Ubuntu)
-        tags: packages2
+        tags: user-packages
         when: ansible_distribution == "Ubuntu"
         pip:
           executable: pip3
@@ -17,7 +17,7 @@
             - bokeh
 
       - name: Install pip packages (Ubuntu)
-        tags: packages2
+        tags: user-packages
         when: ansible_distribution == "Ubuntu"
         pip:
           executable: pip3
@@ -98,7 +98,7 @@
           - { src: pytest-3,   dest: pytest }
           - { src: ipython3,   dest: ipython }
           - { src: cython3,    dest: cython }
-        tags: packages2
+        tags: user-packages
 
       - name: Install .bashrc (Ubuntu)
         when: ansible_distribution == "Ubuntu"
@@ -145,19 +145,3 @@
           value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop', 'libreoffice-writer.desktop']"
           state: present
         tags: remote
-
-      - name: Clone repos (Thursday)
-        tags: clone,remote
-        git:
-          repo: https://github.com/ASPP/2021-bordeaux-ODD
-          dest: /home/student/2021-bordeaux-ODD
-          clone: yes
-          update: no
-
-      - name: Clone repos (Thursday, II)
-        tags: clone,remote
-        git:
-          repo: https://github.com/ASPP/2021-bordeaux-cython-numba
-          dest: /home/student/2021-bordeaux-cython-numba
-          clone: yes
-          update: no

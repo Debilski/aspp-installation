@@ -22,6 +22,7 @@
 
       - name: Disable apt-daily.timer
         tags: remote
+        when: ansible_distribution == "Ubuntu"
         ansible.builtin.systemd:
           name: apt-daily.timer
           state: stopped
@@ -29,6 +30,7 @@
 
       - name: Disable apt-daily service
         tags: remote
+        when: ansible_distribution == "Ubuntu"
         ansible.builtin.systemd:
           name: apt-daily.service
           state: stopped
@@ -57,32 +59,6 @@
             - curl
             - python3-psutil  # for ansible
             - openssh-server
-
-      - name: Install distro packages (Ubuntu/Jupyter)
-        apt:
-          name: "{{ packages }}"
-          update_cache: yes
-          force_apt_get: yes
-        tags: packages2
-        when: ansible_distribution == "Ubuntu"
-        vars:
-          packages:
-            - jupyter-client
-            - jupyter-console
-            - jupyter-notebook
-            - jupyter-nbconvert
-            - jupyter-qtconsole
-            - python3-ipython
-
-      - name: Install distro packages (Ubuntu/all else)
-        apt:
-          name: "{{ packages }}"
-          update_cache: yes
-          force_apt_get: yes
-        tags: packages3
-        when: ansible_distribution == "Ubuntu"
-        vars:
-          packages:
             - gcc
             - g++
             - make
@@ -162,6 +138,12 @@
             - libopenblas-dev
             - flite
             # - bloscpack
+            - jupyter-client
+            - jupyter-console
+            - jupyter-notebook
+            - jupyter-nbconvert
+            - jupyter-qtconsole
+            - python3-ipython
 
             # For pelita testing
             - xauth
@@ -303,27 +285,6 @@
             # For dconf ansible module
             - dbus-tools
 
-      - name: Allow password authentication (Fedora)
-        when: ansible_distribution == "Fedora"
-        copy:
-          content: |
-             PasswordAuthentication yes
-
-          dest: /etc/ssh/sshd_config.d/80-password-auth.conf
-
-      - name: Allow X forwarding (Fedora)
-        when: ansible_distribution == "Fedora"
-        copy:
-          content: |
-             ForwardX11 yes
-
-          dest: /etc/ssh/ssh_config.d/80-x-forwarding.conf
-
-      - name: Reload sshd config
-        ansible.builtin.systemd:
-          name: sshd.service
-          state: reloaded
-
       - name: Install latest git
         tags: packages
         when: ansible_distribution == "Ubuntu"
@@ -333,7 +294,7 @@
           force_apt_get: yes
 
       - name: Install desktop
-        tags: packages2
+        tags: packages
         when: ansible_distribution == "Ubuntu"
         apt:
           name: ubuntu-desktop
@@ -359,48 +320,8 @@
         tags: packages
         register: code_exists
       - name: Install visualstudio
-        tags: packages2
+        tags: packages
         when: not code_exists.stat.exists and ansible_distribution == "Ubuntu"
         apt:
           deb: https://go.microsoft.com/fwlink/?LinkID=760868
           force_apt_get: yes
-
-      - name: Set up autologin
-        when: ansible_distribution == "Ubuntu"
-        copy:
-          src: files/custom.conf
-          dest: /etc/gdm3/
-        tags: remote
-
-      - name: Set up autologin
-        when: ansible_distribution == "Fedora"
-        copy:
-          src: files/custom.conf
-          dest: /etc/gdm/
-        tags: remote
-
-      - name: Setup /etc/firefox/sysprefs.js
-        copy:
-          src: files/sysprefs.js
-          dest: /etc/firefox/
-        tags: remote
-
-      - name: Set timezone to Europe/Rome
-        timezone:
-          name: Europe/Rome
-        tags: remote
-
-      - name: Set language to English
-        copy:
-          content: |
-            LANG=en_US.UTF-8
-          dest: /etc/locale.conf
-        tags: remote
-
-      - name: Set language to English
-        copy:
-          content: |
-            LANG=en_US.UTF-8
-          dest: /etc/default/locale
-        tags: remote
-        when: ansible_distribution == "Ubuntu"
