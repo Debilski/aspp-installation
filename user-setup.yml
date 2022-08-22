@@ -15,14 +15,6 @@
             - pandas >= 0.25
             - pysnooper
             - bokeh
-
-      - name: Install pip packages (Ubuntu)
-        tags: user-packages
-        when: ansible_distribution == "Ubuntu"
-        pip:
-          executable: pip3
-          state: latest
-          name:
             - ipython_memwatcher
             - pyprof2calltree
             - git+https://github.com/ASPP/prof3to2.git
@@ -33,6 +25,23 @@
             - pudb
             - altair
             - ipyparallel
+            - snakeviz
+            - vega_datasets
+            - vega
+            - pelita
+
+      - name: Install pip packages (Ubuntu)
+        tags: user-packages
+        when: ansible_distribution == "Fedora"
+        pip:
+          executable: pip3
+          state: latest
+          name:
+            - ipython_memwatcher
+            - pyprof2calltree
+            - git+https://github.com/ASPP/prof3to2.git
+            - numba
+            - altair
             - snakeviz
             - vega_datasets
             - vega
