@@ -122,6 +122,12 @@
           dest: '/home/student/.bashrc.d/'
         tags: remote
 
+      - name: Install .config/micro/bindings.json
+        copy:
+          src: 'files/micro-bindings.json'
+          dest: '/home/student/.config/micro/bindings.json'
+        tags: remote
+
       - name: Remove .bash_history
         file:
           path: '/home/student/.bash_history'

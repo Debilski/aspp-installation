@@ -215,6 +215,7 @@
             - python3-Cython
             - gnupg2
             - hwloc
+            - tmux
             - python3-numpy
             - python3-scipy
             - python3-blosc
