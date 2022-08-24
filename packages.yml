@@ -218,6 +218,7 @@
             - tmux
             - bash-completion
             - bind-utils
+            - python3-ara
             - python3-numpy
             - python3-scipy
             - python3-blosc
