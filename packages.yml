@@ -288,6 +288,16 @@
             # For dconf ansible module
             - dbus-tools
 
+            # Desktop
+            - '@gnome-desktop'
+            - gnome-shell-extension-appindicator
+            - gnome-shell-extension-background-logo
+            - gnome-shell-extension-caffeine
+            - gnome-shell-extension-dash-to-dock
+            - gnome-shell-extension-launch-new-instance
+            - gnome-shell-extension-openweather
+            - gnome-shell-extension-workspace-indicator
+
       - name: Install latest git
         tags: packages
         when: ansible_distribution == "Ubuntu"
