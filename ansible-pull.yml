@@ -61,6 +61,23 @@
       tags: remote
       # --only-if-changed
 
+    - name: Create override folder for ansible-pull.service
+      file:
+        path: /usr/local/lib/systemd/system/ansible-pull.service.d
+        state: directory
+      tags: remote
+
+    - name: Add ara config to ansible-pull
+      copy:
+        dest: /usr/local/lib/systemd/system/ansible-pull.service.d/ara.conf
+        content: |
+          [Service]
+          Environment=ARA_API_SERVER=http://aspp.uber.space:43100
+          Environment=ARA_API_CLIENT=http
+          # This should be set dynamically: python3 -m ara.setup.callback_plugins
+          Environment=ANSIBLE_CALLBACK_PLUGINS=/usr/lib/python3.10/site-packages/ara/plugins/callback
+      tags: remote
+
     - name: Enable timer
       systemd:
         name: ansible-pull.timer
