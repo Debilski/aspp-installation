@@ -13,7 +13,7 @@
           groups: adm, sudo
           password: "{{ student_password }}"
           shell: "/bin/bash"
-        tags: remote
+        tags: user-creation
 
       - name: Create student user
         when: ansible_distribution == "Fedora"
@@ -23,7 +23,7 @@
           groups: adm, wheel
           password: "{{ student_password }}"
           shell: "/bin/bash"
-        tags: remote
+        tags: user-creation
 
       - name: Set authorized key taken from file
         authorized_key:
@@ -32,9 +32,11 @@
           key: "{{ lookup('file', '~/.ssh/id_ecdsa_aspp.pub') }}"
           exclusive: no
         ignore_errors: yes
+        tags: user-creation
 
       - name: Allow password authentication (Fedora)
         when: ansible_distribution == "Fedora"
+        tags: user-creation
         copy:
           content: |
              PasswordAuthentication yes
@@ -43,6 +45,7 @@
 
       - name: Allow X forwarding (Fedora)
         when: ansible_distribution == "Fedora"
+        tags: user-creation
         copy:
           content: |
              ForwardX11 yes
@@ -50,6 +53,7 @@
           dest: /etc/ssh/ssh_config.d/80-x-forwarding.conf
 
       - name: Reload sshd config
+        tags: user-creation
         ansible.builtin.systemd:
           name: sshd.service
           state: reloaded
@@ -59,14 +63,14 @@
         copy:
           src: files/custom.conf
           dest: /etc/gdm3/
-        tags: remote
+        tags: user-creation
 
       - name: Set up autologin
         when: ansible_distribution == "Fedora"
         copy:
           src: files/custom.conf
           dest: /etc/gdm/
-        tags: remote
+        tags: user-creation
 
       - name: Setup /etc/firefox/sysprefs.js
         copy:
