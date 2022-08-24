@@ -216,6 +216,7 @@
             - gnupg2
             - hwloc
             - tmux
+            - bind-utils
             - python3-numpy
             - python3-scipy
             - python3-blosc
