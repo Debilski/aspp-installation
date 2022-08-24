@@ -20,9 +20,16 @@
 
   tasks:
     - name: Install ansible
+      when: ansible_distribution == "Ubuntu"
       apt:
-        name: ansible,git
+        name: ansible, git
         force_apt_get: yes
+      tags: packages,remote
+
+    - name: Install ansible
+      when: ansible_distribution == "Fedora"
+      dnf:
+        name: ansible, git
       tags: packages,remote
 
     - name: Create unit directory
