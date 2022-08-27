@@ -200,6 +200,7 @@
             - git-email
             - tig
             - kcachegrind
+            - gprof2dot
             - emacs
             - vim
             - gnome-builder
@@ -238,6 +239,7 @@
             - python3-dask+dataframe
             - python3-dask+delayed
             - python3-dask+diagnostics
+            - python3-GitPython
             - python3-graphviz
             # - python3-mpltoolkits.basemap
             - python3-coverage
