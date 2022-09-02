@@ -190,6 +190,9 @@
             - geeqie
             - graphviz
             - graphviz-doc
+            - openssh-askpass
+            - openssh-clients
+            - openssh-server
             - lz4
             - firefox
             - git
