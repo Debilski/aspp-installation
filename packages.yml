@@ -193,6 +193,7 @@
             - openssh-askpass
             - openssh-clients
             - openssh-server
+            - xclip
             - lz4
             - firefox
             - git
