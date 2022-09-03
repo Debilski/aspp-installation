@@ -17,6 +17,8 @@ HomeSize=512
 
 [Content]
 Cache=mkosi.cache
+WithNetwork=yes
+
 Packages=
         dnf
         gcc
