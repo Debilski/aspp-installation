@@ -294,9 +294,6 @@
             # For pelita testing
             - xauth
 
-            # For dconf ansible module
-            - dbus-tools
-
             # Desktop
             - '@gnome-desktop'
             - gnome-shell-extension-appindicator

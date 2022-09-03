@@ -29,7 +29,7 @@
     - name: Install ansible
       when: ansible_distribution == "Fedora"
       dnf:
-        name: ansible, git
+        name: ansible, git, dbus-tools
       tags: packages,remote
 
     - name: Create unit directory

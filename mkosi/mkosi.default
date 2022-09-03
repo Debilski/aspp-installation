@@ -138,6 +138,7 @@ Packages=
         # For pelita testing
         xauth
 
+        ansible
         # For dconf ansible module
         dbus-tools
 
