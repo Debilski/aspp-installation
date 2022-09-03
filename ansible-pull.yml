@@ -46,13 +46,18 @@
           {{ schedule }}
 
           [Install]
-          WantedBy=default.target
+          WantedBy=multi-user.target
       tags: remote
 
     - name: Install service file
       copy:
         dest: /usr/local/lib/systemd/system/ansible-pull.service
         content: |
+          [Unit]
+          After=multi-user.target graphical.target
+          Wants=network-online.target
+          After=network-online.target
+
           [Service]
           Type=oneshot
           ExecStart=ansible-pull -i localhost, -U {{ repo_url }} --only-if-changed -t {{ pull_tags }} all.yml
