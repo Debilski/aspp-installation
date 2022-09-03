@@ -2,5 +2,7 @@
 
 [ "$1" = "final" ] || exit 0
 
+sed -r 's/(options.*) rw/\1 ro systemd.mask=systemd-repart.service systemd.mask=systemd-remount-fs.service systemd.unit=multi-user.target/; s/(title.*Fedora).*/\1 Installer/' </efi/loader/entries/* >/efi/loader/entries/installer.conf
+
 cd /root/installation
 ansible-playbook -i localhost, --connection local all.yml --skip-tags graphical
