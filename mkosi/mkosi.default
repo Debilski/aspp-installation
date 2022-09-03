@@ -38,7 +38,9 @@ Packages=
         gdb
         strace
         ltrace
+        fpaste
         man-db
+        dstat
         # gcc-doc
         openssh-clients
         openssh-server
@@ -174,6 +176,9 @@ Packages=
         libcamera-tools
         pipewire-plugin-libcamera
         pciutils
+
+        # otherwise we get an error from pam stack about missing module
+        sssd-client
 
         # rpmfusion
         https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-36.noarch.rpm

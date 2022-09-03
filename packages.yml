@@ -185,6 +185,11 @@
             - flex
             - bison
             - gdb
+            - strace
+            - ltrace
+            - fpaste
+            - man-db
+            - dstat
             # - gcc-doc
             - openssh-clients
             - openssh-server
