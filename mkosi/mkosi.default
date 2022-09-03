@@ -6,7 +6,7 @@ Release=36
 Format=gpt_btrfs
 Bootable=yes
 OutputDirectory=mkosi.output
-Minimize=yes
+# Minimize=yes
 CompressFs=yes
 
 Hostname=aspp
@@ -36,6 +36,9 @@ Packages=
         flex
         bison
         gdb
+        strace
+        ltrace
+        man-db
         # gcc-doc
         openssh-clients
         openssh-server
@@ -141,6 +144,41 @@ Packages=
         # For dconf ansible module
         dbus-tools
 
+        NetworkManager
+        NetworkManager-adsl
+        NetworkManager-bluetooth
+        NetworkManager-config-connectivity-fedora
+        NetworkManager-libreswan
+        NetworkManager-openconnect-gnome
+        NetworkManager-openvpn-gnome
+        NetworkManager-pptp-gnome
+        NetworkManager-ssh-gnome
+        NetworkManager-team
+        NetworkManager-vpnc-gnome
+        NetworkManager-wifi
+        NetworkManager-wwan
+        nm-connection-editor
+
+        b43-fwcutter
+        alsa-firmware
+        alsa-sof-firmware
+        alsa-tools-firmware
+        crystalhd-firmware
+        linux-firmware
+        atmel-firmware
+        # ipw*-firmware
+        iw*-firmware
+        zd*-firmware
+        libcamera-gstreamer
+        libcamera-ipa
+        libcamera-tools
+        pipewire-plugin-libcamera
+        pciutils
+
+        # rpmfusion
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-36.noarch.rpm
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-36.noarch.rpm
+
         # Desktop
         @gnome-desktop
         gnome-shell-extension-appindicator
@@ -150,6 +188,8 @@ Packages=
         gnome-shell-extension-launch-new-instance
         gnome-shell-extension-openweather
         gnome-shell-extension-workspace-indicator
+        gnome-tour
+        xdg-desktop*
 
         gimp
         inkscape
