@@ -1,0 +1,152 @@
+[Distribution]
+Distribution=fedora
+Release=36
+
+[Output]
+Format=gpt_btrfs
+Bootable=yes
+OutputDirectory=mkosi.output
+# Minimize=yes
+CompressFs=yes
+
+Hostname=aspp
+
+[Partition]
+RootSize=8G
+HomeSize=512
+
+[Content]
+Cache=mkosi.cache
+Packages=
+        dnf
+        gcc
+        g++
+        make
+        autoconf
+        automake
+        libtool
+        flex
+        bison
+        gdb
+        # gcc-doc
+        gimp
+        inkscape
+        geeqie
+        graphviz
+        graphviz-doc
+        openssh-askpass
+        openssh-clients
+        openssh-server
+        xclip
+        lz4
+        firefox
+        git
+        gitg
+        gitk
+        git-core-doc
+        git-gui
+        git-email
+        tig
+        kcachegrind
+        gprof2dot
+        emacs
+        vim
+        gnome-builder
+        gedit
+        gedit-plugins
+        htop
+        curl
+        ncdu
+        micro
+        meson
+        moreutils
+        curl
+        python3-Cython
+        gnupg2
+        hwloc
+        tmux
+        bash-completion
+        bind-utils
+        python3-ara
+        python3-numpy
+        python3-scipy
+        python3-blosc
+        python3-zmq
+        python3-yaml
+        python3-colorama
+        python3-networkx
+        python3-jupyter-client
+        python3-jupyter-console
+        python3-jupyter-c-kernel
+        python3-jupyter-sphinx
+        python3-ipython
+        python3-pytest
+        python3-dask
+        python3-dask+array
+        python3-dask+bag
+        python3-dask+dataframe
+        python3-dask+delayed
+        python3-dask+diagnostics
+        python3-GitPython
+        python3-graphviz
+        # python3-mpltoolkits.basemap
+        python3-coverage
+        # python3-line-profiler
+        # python3-memory-profiler
+        # python3-bcolz
+        python3-plotly
+        python3-opencv
+        python3-toolz
+        python3-joblib
+        python3-scikit-learn
+        python3-scipy
+        python3-matplotlib
+        # python3-matplotlib-venn
+        # python3-willow
+        python3-pyflakes
+        python3-sphinx
+        python3-sphinx_rtd_theme
+        python3-pudb
+        python3-pytest
+        python3-pytest-flake8
+        python3-pytest-flakes
+        python3-pytest-mpi
+        python3-pytest-cov
+        python3-mpi4py-mpich
+        python3-mpi4py-openmpi
+        python3-imageio
+        python3-h5py
+        python3-scikit-image
+        # python3-tweepy
+        python3-xlrd
+        python3-seaborn
+        python3-psutil
+        # cufflinks
+        # runsnakerun
+        # libopenblas-base: we probably want to pull in all blas implementations
+        #                   and provide instructions how to switch using flexiblas.
+        flexiblas-devel
+        flite
+        # bloscpack
+
+        # Installed using pip in Ubuntu
+        python3-pandas
+        python3-bokeh
+        python3-pysnooper
+        python3-ipyparallel
+
+        # For pelita testing
+        xauth
+
+        # For dconf ansible module
+        dbus-tools
+
+        # Desktop
+        @gnome-desktop
+        gnome-shell-extension-appindicator
+        gnome-shell-extension-background-logo
+        gnome-shell-extension-caffeine
+        gnome-shell-extension-dash-to-dock
+        gnome-shell-extension-launch-new-instance
+        gnome-shell-extension-openweather
+        gnome-shell-extension-workspace-indicator

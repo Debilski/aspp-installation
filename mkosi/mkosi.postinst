@@ -1,0 +1,6 @@
+#!/bin/bash
+
+[ "$1" = "final" ] || exit 0
+
+cd /root/installation
+ansible-playbook -i localhost, --connection local all.yml
