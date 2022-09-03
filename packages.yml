@@ -175,6 +175,7 @@
         when: ansible_distribution == "Fedora"
         vars:
           packages:
+            - sudo
             - gcc
             - g++
             - make
@@ -185,17 +186,9 @@
             - bison
             - gdb
             # - gcc-doc
-            - gimp
-            - inkscape
-            - geeqie
-            - graphviz
-            - graphviz-doc
-            - openssh-askpass
             - openssh-clients
             - openssh-server
-            - xclip
             - lz4
-            - firefox
             - git
             - gitg
             - gitk
@@ -203,13 +196,9 @@
             - git-gui
             - git-email
             - tig
-            - kcachegrind
             - gprof2dot
             - emacs
             - vim
-            - gnome-builder
-            - gedit
-            - gedit-plugins
             - htop
             - curl
             - ncdu
@@ -294,6 +283,13 @@
             # For pelita testing
             - xauth
 
+      - name: Install distro packages (Fedora)
+        dnf:
+          name: "{{ packages }}"
+        tags: packages, graphical
+        when: ansible_distribution == "Fedora"
+        vars:
+          packages:
             # Desktop
             - '@gnome-desktop'
             - gnome-shell-extension-appindicator
@@ -303,6 +299,20 @@
             - gnome-shell-extension-launch-new-instance
             - gnome-shell-extension-openweather
             - gnome-shell-extension-workspace-indicator
+
+            # Various
+            - gimp
+            - inkscape
+            - geeqie
+            - graphviz
+            - graphviz-doc
+            - openssh-askpass
+            - xclip
+            - firefox
+            - kcachegrind
+            - gnome-builder
+            - gedit
+            - gedit-plugins
 
       - name: Install latest git
         tags: packages
@@ -323,10 +333,10 @@
 
       - stat:
           path: /usr/bin/atom
-        tags: packages,atom
+        tags: packages,atom,graphical
         register: atom_exists
       - name: Install atom
-        tags: packages,atom
+        tags: packages,atom,graphical
         when: not atom_exists.stat.exists and ansible_distribution == "Ubuntu"
         apt:
           deb: https://atom.io/download/deb
@@ -334,7 +344,7 @@
           force_apt_get: yes
         ignore_errors: yes
       - name: Install atom
-        tags: packages,atom
+        tags: packages,atom,graphical
         when: not atom_exists.stat.exists and ansible_distribution == "Fedora"
         dnf:
           name: https://github.com/atom/atom/releases/download/v1.60.0/atom.x86_64.rpm
@@ -342,16 +352,16 @@
 
       - stat:
           path: /usr/bin/code
-        tags: packages,visualstudio
+        tags: packages,visualstudio,graphical
         register: code_exists
       - name: Install visualstudio code
-        tags: packages,visualstudio
+        tags: packages,visualstudio,graphical
         when: not code_exists.stat.exists and ansible_distribution == "Ubuntu"
         apt:
           deb: https://go.microsoft.com/fwlink/?LinkID=760868
           force_apt_get: yes
       - name: Install visualstudio code
-        tags: packages,visualstudio
+        tags: packages,visualstudio,graphical
         when: not code_exists.stat.exists and ansible_distribution == "Fedora"
         dnf:
           name: https://packages.microsoft.com/yumrepos/vscode/code-1.70.2-1660629488.el7.x86_64.rpm
