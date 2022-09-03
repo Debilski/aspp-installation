@@ -239,6 +239,7 @@
             # - python3-line-profiler
             # - python3-memory-profiler
             # - python3-bcolz
+            - python3-pip
             - python3-plotly
             - python3-opencv
             - python3-toolz
