@@ -97,3 +97,40 @@
           dest: /etc/default/locale
         tags: remote
         when: ansible_distribution == "Ubuntu"
+
+      - name: Create user unit directory
+        file:
+          path: /usr/local/lib/systemd/user/
+          state: directory
+        tags: remote
+
+      - name: Install keyadder service
+        copy:
+          dest: /usr/local/lib/systemd/user/keyadder@.service
+          content: |
+            [Unit]
+            BindsTo=%i.mount
+
+            [Service]
+            ExecStart=sh -x -c 'for i in %f/ssh/id_*.pub; do ssh-add - <$${i%%.pub}; done'
+            ExecStop=ssh-add -D
+
+            Type=oneshot
+            RemainAfterExit=true
+
+        tags: remote
+
+      - name: Create user unit directory
+        file:
+          path: /usr/local/lib/systemd/user/run-media-.mount.d
+          state: directory
+        tags: remote
+
+      - name: Install keyadder service
+        copy:
+          dest: /usr/local/lib/systemd/user/run-media-.mount.d/keyadder.conf
+          content: |
+            [Unit]
+            Wants=keyadder@%N.service
+
+        tags: remote
