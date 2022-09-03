@@ -122,6 +122,11 @@
           dest: '/home/student/.bashrc.d/'
         tags: remote
 
+      - name: Create directory .config/micro
+        file:
+          path: /home/student/.config/micro/
+          state: directory
+        tags: remote
       - name: Install .config/micro/bindings.json
         copy:
           src: 'files/micro-bindings.json'
