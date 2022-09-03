@@ -6,21 +6,27 @@ Release=36
 Format=gpt_btrfs
 Bootable=yes
 OutputDirectory=mkosi.output
-# Minimize=yes
+Minimize=yes
 CompressFs=yes
 
 Hostname=aspp
 
 [Partition]
-RootSize=8G
+RootSize=7G
 HomeSize=512
+
+[Host]
+QemuSmp=2
+QemuMem=2048
 
 [Content]
 Cache=mkosi.cache
 WithNetwork=yes
 
 Packages=
+        sudo
         dnf
+        glibc-langpack-en
         gcc
         g++
         make
@@ -31,17 +37,9 @@ Packages=
         bison
         gdb
         # gcc-doc
-        gimp
-        inkscape
-        geeqie
-        graphviz
-        graphviz-doc
-        openssh-askpass
         openssh-clients
         openssh-server
-        xclip
         lz4
-        firefox
         git
         gitg
         gitk
@@ -49,13 +47,9 @@ Packages=
         git-gui
         git-email
         tig
-        kcachegrind
         gprof2dot
         emacs
         vim
-        gnome-builder
-        gedit
-        gedit-plugins
         htop
         curl
         ncdu
@@ -63,12 +57,15 @@ Packages=
         meson
         moreutils
         curl
+        python3
+        python-unversioned-command
         python3-Cython
         gnupg2
         hwloc
         tmux
         bash-completion
         bind-utils
+        iputils
         python3-ara
         python3-numpy
         python3-scipy
@@ -153,3 +150,16 @@ Packages=
         gnome-shell-extension-launch-new-instance
         gnome-shell-extension-openweather
         gnome-shell-extension-workspace-indicator
+
+        gimp
+        inkscape
+        geeqie
+        graphviz
+        graphviz-doc
+        openssh-askpass
+        xclip
+        firefox
+        kcachegrind
+        gnome-builder
+        gedit
+        gedit-plugins

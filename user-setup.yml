@@ -30,7 +30,7 @@
             - vega
             - pelita
 
-      - name: Install pip packages (Ubuntu)
+      - name: Install pip packages (Fedora)
         tags: user-packages
         when: ansible_distribution == "Fedora"
         pip:
