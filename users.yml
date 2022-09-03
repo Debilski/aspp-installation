@@ -25,11 +25,11 @@
           shell: "/bin/bash"
         tags: user-creation
 
-      - name: Set authorized key taken from file
+      - name: Set authorized key
         authorized_key:
           user: student
           state: present
-          key: "{{ lookup('file', '~/.ssh/id_ecdsa_aspp.pub') }}"
+          key: "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAEgEXiWzskC+g+5Va0qtiLi3yiT1UL+ENruRwEgX5FnlknJuKE7NM+6LYccG4MKlgjymbQKN02L7g4E/FRJPJk= student@aspp"
           exclusive: no
         ignore_errors: yes
         tags: user-creation
