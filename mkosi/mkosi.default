@@ -22,6 +22,7 @@ QemuMem=2048
 [Content]
 Cache=mkosi.cache
 WithNetwork=yes
+WithDocs=yes
 
 Packages=
         sudo
