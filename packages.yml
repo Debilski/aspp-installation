@@ -318,6 +318,9 @@
             - gedit
             - gedit-plugins
 
+            # Fonts
+            - google-noto-fonts
+
       - name: Install latest git
         tags: packages
         when: ansible_distribution == "Ubuntu"
