@@ -12,7 +12,7 @@ CompressFs=yes
 Hostname=aspp
 
 [Partition]
-RootSize=7G
+RootSize=7250M
 HomeSize=512
 
 [Host]
@@ -197,7 +197,6 @@ Packages=
         gnome-tour
         xdg-desktop*
 
-        gimp
         inkscape
         geeqie
         graphviz

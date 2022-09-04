@@ -69,7 +69,6 @@
             - bison
             - gdb
             - gcc-doc
-            - gimp
             - inkscape
             - geeqie
             - graphviz
@@ -307,7 +306,6 @@
             - gnome-shell-extension-workspace-indicator
 
             # Various
-            - gimp
             - inkscape
             - geeqie
             - graphviz
