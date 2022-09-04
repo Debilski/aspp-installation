@@ -319,7 +319,7 @@
             - gedit-plugins
 
             # Fonts
-            - google-noto-fonts
+            - google-noto-*
 
       - name: Install latest git
         tags: packages
