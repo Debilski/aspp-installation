@@ -175,6 +175,7 @@
         vars:
           packages:
             - sudo
+            - plocate
             - gcc
             - g++
             - make

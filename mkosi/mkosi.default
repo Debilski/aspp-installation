@@ -28,6 +28,7 @@ Packages=
         sudo
         dnf
         glibc-langpack-en
+        plocate
         gcc
         g++
         make
