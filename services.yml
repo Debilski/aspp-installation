@@ -8,6 +8,6 @@
         when: ansible_distribution == "Fedora"
         ansible.builtin.systemd:
           name: systemd-timesyncd.service
-          state: running
+          state: started
           enabled: true
 
