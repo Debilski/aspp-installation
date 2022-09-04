@@ -1,0 +1,13 @@
+---
+  - name: Enable/disable Services
+    remote_user: root
+    hosts: all
+    tasks:
+      - name: Enable timesyncd
+        tags: remote
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.systemd:
+          name: systemd-timesyncd.service
+          state: running
+          enabled: true
+
