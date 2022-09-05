@@ -47,23 +47,10 @@
             - vega
             - pelita
 
-      - name: Install Rike's vim config
-        git:
-          repo: 'https://github.com/Debilski/vim-basic.git'
-          dest: /home/student/.vim
-          clone: yes
-          update: yes
-        tags: remote
-
-      - name: Enable Rike's vim config
-        file:
-          src: .vim/vimrc
-          dest: /home/student/.vimrc
-          state: link
-        tags: remote
-
-      - name: Install vim plugins
-        command: vim +PlugInstall +qall
+      - name: Install Rike's vim config, if no other config is present
+        command:
+          cmd: git clone 'https://github.com/Debilski/vim-basic.git' '/home/student/.vim' && ln -s /home/student/.vim/vimrc /home/student/.vimrc && vim vim +PlugInstall +qall
+          creates: /home/student/.vim
         tags: remote
 
       - name: Set up git
