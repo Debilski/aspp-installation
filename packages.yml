@@ -176,6 +176,7 @@
           packages:
             - sudo
             - plocate
+            - zram-generator-defaults
             - gcc
             - g++
             - make

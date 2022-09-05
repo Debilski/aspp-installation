@@ -29,6 +29,7 @@ Packages=
         dnf
         glibc-langpack-en
         plocate
+        zram-generator-defaults
         gcc
         g++
         make
