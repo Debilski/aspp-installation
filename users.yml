@@ -72,11 +72,20 @@
           dest: /etc/gdm/
         tags: user-creation
 
-      - name: Setup /etc/firefox/sysprefs.js
+      - name: Setup firefox homepage
+        when: ansible_distribution == "Ubuntu"
         copy:
           src: files/sysprefs.js
           dest: /etc/firefox/
         tags: remote
+
+      - name: Setup firefox homepage
+        when: ansible_distribution == "Fedora"
+        copy:
+          content: |
+            pref("browser.startup.homepage", "data:text/plain,browser.startup.homepage=https://aspp.school/schedule");
+
+          dest: /usr/lib64/firefox/browser/defaults/preferences/firefox-xxx-aspp.js
 
       - name: Set timezone to Europe/Madrid
         timezone:
