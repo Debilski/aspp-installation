@@ -152,3 +152,15 @@
           value: "['firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'atom.desktop', 'code.desktop', 'libreoffice-writer.desktop']"
           state: present
         tags: remote
+
+      - name: Copy background
+        copy:
+          src: 'files/basque.png'
+          dest: '/home/student/Desktop/wallpaper.png'
+        tags: remote
+
+      - name: Activate background
+        tags: remote
+        command: gsettings set org.gnome.desktop.background picture-uri '"file:///home/student/Desktop/wallpaper.png"'
+
+
