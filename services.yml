@@ -11,3 +11,20 @@
           state: started
           enabled: true
 
+      - name: Disable packagekit.service
+        tags: remote
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.systemd:
+          name: packagekit.service
+          state: stopped
+          masked: true
+          enabled: false
+
+      - name: Disable packagekit-offline-update.service
+        tags: remote
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.systemd:
+          name: packagekit-offline-update.service
+          state: stopped
+          masked: true
+          enabled: false
