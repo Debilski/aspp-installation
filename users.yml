@@ -87,6 +87,8 @@
 
           dest: /usr/lib64/firefox/browser/defaults/preferences/firefox-xxx-aspp.js
 
+        tags: remote
+
       - name: Set timezone to Europe/Madrid
         timezone:
           name: Europe/Rome
