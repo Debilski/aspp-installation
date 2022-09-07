@@ -33,6 +33,8 @@ Packages=
         gcc
         g++
         make
+        wget
+        curl
         autoconf
         automake
         libtool

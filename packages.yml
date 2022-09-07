@@ -167,6 +167,14 @@
             - update-notifier
             - update-manager
 
+      - name: Install zbyszek copr repo (Fedora)
+        ansible.builtin.get_url:
+          url: https://copr.fedorainfracloud.org/coprs/zbyszek/new-packages/repo/fedora-36/zbyszek-new-packages-fedora-36.repo
+          dest: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:zbyszek:new-packages.repo
+          mode: '0644'
+        tags: packages
+        when: ansible_distribution == "Fedora"
+
       - name: Install distro packages (Fedora)
         dnf:
           name: "{{ packages }}"
@@ -180,6 +188,8 @@
             - gcc
             - g++
             - make
+            - wget
+            - curl
             - autoconf
             - automake
             - libtool
@@ -280,6 +290,8 @@
             - flexiblas-devel
             - flite
             # - bloscpack
+
+            - pyinstrument
 
             # Installed using pip in Ubuntu
             - python3-pandas
