@@ -32,6 +32,7 @@ Packages=
         zram-generator-defaults
         gcc
         g++
+        rsync
         make
         wget
         curl

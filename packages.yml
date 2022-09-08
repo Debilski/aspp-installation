@@ -199,6 +199,7 @@
             - strace
             - ltrace
             - fpaste
+            - rsync
             - man-db
             - dstat
             # - gcc-doc

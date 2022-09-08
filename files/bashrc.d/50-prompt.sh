@@ -70,7 +70,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-stty -ixon
+[[ $- == *i* ]] && stty -ixon
 
 if [ -f /usr/lib/git-core/git-sh-prompt ]; then
     source /usr/lib/git-core/git-sh-prompt
