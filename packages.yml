@@ -332,6 +332,7 @@
             - gnome-builder
             - gedit
             - gedit-plugins
+            - rxvt-unicode
 
             # Fonts
             - google-noto-*
