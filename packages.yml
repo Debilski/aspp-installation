@@ -387,3 +387,10 @@
         dnf:
           name: https://packages.microsoft.com/yumrepos/vscode/code-1.70.2-1660629488.el7.x86_64.rpm
           disable_gpg_check: yes
+
+      - name: Install pre-compiled py-spy
+        tags: remote,packages
+        copy:
+          src: files/py-spy
+          mode: '0755'
+          dest: /usr/local/bin/
