@@ -156,12 +156,12 @@
 
       - name: Copy background
         copy:
-          src: 'files/basque.png'
-          dest: '/home/student/Desktop/wallpaper.png'
+          src: 'files/pacman.jpg'
+          dest: '/home/student/Desktop/wallpaper.jpg'
         tags: remote
 
       - name: Activate background
         tags: remote
-        command: gsettings set org.gnome.desktop.background picture-uri '"file:///home/student/Desktop/wallpaper.png"'
+        command: gsettings set org.gnome.desktop.background picture-uri '"file:///home/student/Desktop/wallpaper.jpg"'
 
 
