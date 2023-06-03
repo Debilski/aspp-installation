@@ -154,6 +154,13 @@
           state: present
         tags: remote
 
+      - name: Create ~/Desktop
+        ansible.builtin.file:
+          path: '/home/student/Desktop'
+          state: directory
+          mode: '0755'
+        tags: remote
+
       - name: Copy background
         copy:
           src: 'files/pacman.jpg'
