@@ -51,6 +51,7 @@
             - git-doc
             - git-gui
             - git-email
+            - git-absorb
             - tig
             - tmux
             - emacs
