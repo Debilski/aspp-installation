@@ -1,3 +1,7 @@
+== Installation using the image on the web
+
+curl https://zbyszek.fedorapeople.org/aspp/aspp.raw.zst | zstdcat | sudo dd bs=4096 of=/dev/sdX
+
 == Creation of image
 
 cd installation/mkosi
@@ -7,9 +11,9 @@ sudo mkosi -f
 
 mkosi qemu
 
-== Creation of USB sticks
+== Creation of USB sticks using a local image
 
-dd bs=4096 status=progress if='mkosi.output/fedora~38/aspp.raw' of=/dev/sdX
+sudo dd bs=4096 status=progress if='mkosi.output/fedora~38/aspp.raw' of=/dev/sdX
 
 == Installation from usb stick to laptop
 
