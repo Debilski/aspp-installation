@@ -1,0 +1,25 @@
+== Creation of image
+
+cd installation/mkosi
+sudo mkosi -f
+
+== Local testing of the image
+
+mkosi qemu
+
+== Creation of USB sticks
+
+dd bs=4096 status=progress if='mkosi.output/fedora~38/aspp.raw' of=/dev/sdX
+
+== Installation from usb stick to laptop
+
+0. Laptop must be in UEFI mode, SecureBoot disabled
+1. Boot from the usb stick, select 'Fedora Installer'
+2. Log in as student, password "student".
+3. 'sudo doinst'
+
+After a reboot, the machine should come up to a graphical environment.
+
+If 'doinst' doesn't work, the image can be copied via other means.
+'doint' essentially calls 'dd' with the 'if' and 'of' parameters
+autodetected.
