@@ -1,0 +1,50 @@
+#!/usr/bin/python
+
+import subprocess
+import os
+import sys
+from pathlib import Path
+
+root = Path('/dev/gpt-auto-root')
+root_major = os.major(root.stat().st_rdev)
+
+out = subprocess.check_output(['lsblk', '-nlb'], text=True)
+
+disks = [line.split() for line in out.splitlines()
+         if not line.startswith(' ')]
+
+disks = [disk for disk in disks
+         if (disk[5] == 'disk'
+             and 'SWAP' not in disk[-1])]
+disks.sort(key=lambda disk: -int(disk[3]))  # sort by size
+maxlen = max(len(f'/dev/{disk[0]}') for disk in disks)
+
+src, dst = None, None
+for i, disk in enumerate(disks):
+    if disk[1] == f'{root_major}:0':
+        assert src is None
+        src = i
+        label = '(src)'
+    elif dst is None:
+        dst = i
+        label = '(dst)'
+    else:
+        label = ''
+
+    size = int(disk[3])
+    print(f"{label:5} {f'/dev/{disk[0]}':{maxlen}} - {size} B / {size/1024**3:.1f} GB")
+
+if src is None:
+    sys.exit('Cannot find source disk')
+if dst is None:
+    sys.exit('Cannot find destination disk')
+
+cmd = ['dd', 'bs=4096', 'status=progress',
+       f'if=/dev/{disks[src][0]}',
+       f'of=/dev/{disks[dst][0]}']
+print('+', *cmd)
+subprocess.check_call(cmd)
+cmd = ['sync']
+print('+', *cmd)
+subprocess.check_call(cmd)
+print('*** READY ***')
