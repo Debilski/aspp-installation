@@ -326,9 +326,6 @@
             - gedit-plugins
             - rxvt-unicode
 
-            # Fonts
-            - google-noto-*
-
       - name: Install latest git
         tags: packages
         when: ansible_distribution == "Ubuntu"
