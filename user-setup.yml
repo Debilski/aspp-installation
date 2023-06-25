@@ -171,4 +171,9 @@
         tags: remote
         command: gsettings set org.gnome.desktop.background picture-uri '"file:///home/student/Desktop/wallpaper.jpg"'
 
-
+      - name: Add github to /home/student/.ssh/known_hosts
+        ansible.builtin.known_hosts:
+          path: /home/student/.ssh/known_hosts
+          name: github.com
+          key: github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+          state: present
