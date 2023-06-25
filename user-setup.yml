@@ -163,7 +163,7 @@
 
       - name: Copy background
         copy:
-          src: 'files/pacman.jpg'
+          src: 'files/aspp_latam.jpg'
           dest: '/home/student/Desktop/wallpaper.jpg'
         tags: remote
 
