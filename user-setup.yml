@@ -136,7 +136,7 @@
       - name: Set input keyboards to us/es/de
         dconf:
           key: /org/gnome/desktop/input-sources/sources
-          value: "[('xkb', 'us'), ('xkb', 'es'), ('xkb', 'de')]"
+          value: "[('xkb', 'us'), ('xkb', 'latam')]"
           state: present
         tags: remote
 
