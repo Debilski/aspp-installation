@@ -89,9 +89,9 @@
 
         tags: remote
 
-      - name: Set timezone to Europe/Madrid
+      - name: Set timezone to MX
         timezone:
-          name: Europe/Rome
+          name: America/Mexico_City
         tags: remote
 
       - name: Set language to English
