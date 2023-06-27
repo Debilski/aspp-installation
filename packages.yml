@@ -258,6 +258,7 @@
             - python3-matplotlib
             # - python3-matplotlib-venn
             # - python3-willow
+            - python3-pyaudio
             - python3-pyflakes
             - python3-sphinx
             - python3-sphinx_rtd_theme
