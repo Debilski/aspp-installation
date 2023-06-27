@@ -115,6 +115,11 @@
           path: /home/student/.config/micro/
           state: directory
         tags: remote
+      - name: Install .config/micro/settings.json
+        copy:
+          src: 'files/micro-settings.json'
+          dest: '/home/student/.config/micro/settings.json'
+        tags: remote
       - name: Install .config/micro/bindings.json
         copy:
           src: 'files/micro-bindings.json'
