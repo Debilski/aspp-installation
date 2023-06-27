@@ -327,6 +327,9 @@
             - gedit-plugins
             - rxvt-unicode
 
+            # Fonts for the pacman characters on the command line
+            - google-noto-*kannada*
+
       - name: Install latest git
         tags: packages
         when: ansible_distribution == "Ubuntu"
