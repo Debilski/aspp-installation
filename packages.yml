@@ -348,25 +348,6 @@
           force_apt_get: yes
 
       - stat:
-          path: /usr/bin/atom
-        tags: packages,atom,graphical
-        register: atom_exists
-      - name: Install atom
-        tags: packages,atom,graphical
-        when: not atom_exists.stat.exists and ansible_distribution == "Ubuntu"
-        apt:
-          deb: https://atom.io/download/deb
-          #deb: http://10.5.7.35:8000/deb
-          force_apt_get: yes
-        ignore_errors: yes
-      - name: Install atom
-        tags: packages,atom,graphical
-        when: not atom_exists.stat.exists and ansible_distribution == "Fedora"
-        dnf:
-          name: https://github.com/atom/atom/releases/download/v1.60.0/atom.x86_64.rpm
-          disable_gpg_check: yes
-
-      - stat:
           path: /usr/bin/code
         tags: packages,visualstudio,graphical
         register: code_exists
