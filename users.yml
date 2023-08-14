@@ -123,7 +123,7 @@
             BindsTo=%i.mount
 
             [Service]
-            ExecStart=sh -x -c 'for i in %f/ssh/id_*.pub; do ssh-add - <$${i%%.pub}; done'
+            ExecStart=sh -x -c 'for i in %f/id_*.pub; do ssh-add - <$${i%%.pub}; done'
             ExecStop=ssh-add -D
 
             Type=oneshot
