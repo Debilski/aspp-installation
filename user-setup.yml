@@ -168,13 +168,13 @@
 
       - name: Copy background
         copy:
-          src: 'files/aspp_latam.jpg'
-          dest: '/home/student/Desktop/wallpaper.jpg'
+          src: 'files/aspp_2023_background.png'
+          dest: '/home/student/Desktop/wallpaper.png'
         tags: remote
 
       - name: Activate background
         tags: remote
-        command: gsettings set org.gnome.desktop.background picture-uri '"file:///home/student/Desktop/wallpaper.jpg"'
+        command: gsettings set org.gnome.desktop.background picture-uri '"file:///home/student/Desktop/wallpaper.png"'
 
       - name: Add github to /home/student/.ssh/known_hosts
         tags: remote
