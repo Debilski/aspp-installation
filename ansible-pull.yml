@@ -9,9 +9,14 @@
   remote_user: root
 
   vars:
-    schedule: |
+    schedule_init: |
       OnBootSec=30 s
-      OnUnitInactiveSec=3 min
+      OnUnitInactiveSec=2 h
+      RandomizedDelaySec=30 s
+
+    schedule_repeat: |
+      OnBootSec=10 min
+      OnUnitInactiveSec=10 min
       RandomizedDelaySec=30 s
 
     repo_url: https://github.com/aspp/installation
@@ -38,20 +43,48 @@
         state: directory
       tags: remote
 
-    - name: Install ansible-pull.timer
+    - name: Install ansible-pull-init.timer
       copy:
-        dest: /usr/local/lib/systemd/system/ansible-pull.timer
+        dest: /usr/local/lib/systemd/system/ansible-pull-init.timer
         content: |
           [Timer]
-          {{ schedule }}
+          {{ schedule_init }}
 
           [Install]
           WantedBy=multi-user.target
       tags: remote
 
-    - name: Install ansible-pull.service
+    - name: Install ansible-pull-repeat.timer
       copy:
-        dest: /usr/local/lib/systemd/system/ansible-pull.service
+        dest: /usr/local/lib/systemd/system/ansible-pull-repeat.timer
+        content: |
+          [Timer]
+          {{ schedule_repeat }}
+
+          [Install]
+          WantedBy=multi-user.target
+      tags: remote
+
+    - name: Install ansible-pull-init.service
+      copy:
+        dest: /usr/local/lib/systemd/system/ansible-pull-init.service
+        content: |
+          [Unit]
+          After=multi-user.target graphical.target
+          Wants=network-online.target
+          After=network-online.target
+          Before=ansible-pull.service
+
+          [Service]
+          Type=oneshot
+          ExecStart=ansible-pull -i localhost, -U {{ repo_url }} -t {{ pull_tags }} all.yml
+          Restart=on-failure
+          RestartSec=5 min
+      tags: remote
+
+    - name: Install ansible-pull-repeat.service
+      copy:
+        dest: /usr/local/lib/systemd/system/ansible-pull-repeat.service
         content: |
           [Unit]
           After=multi-user.target graphical.target
@@ -62,19 +95,18 @@
           Type=oneshot
           ExecStart=ansible-pull -i localhost, -U {{ repo_url }} --only-if-changed -t {{ pull_tags }} all.yml
           Restart=on-failure
-          RestartSec=1min
+          RestartSec=1 min
       tags: remote
-      # --only-if-changed
 
     - name: Create override folder for ansible-pull.service
       file:
-        path: /usr/local/lib/systemd/system/ansible-pull.service.d
+        path: /usr/local/lib/systemd/system/ansible-pull-.service.d
         state: directory
       tags: remote
 
     - name: Add ara config to ansible-pull
       copy:
-        dest: /usr/local/lib/systemd/system/ansible-pull.service.d/ara.conf
+        dest: /usr/local/lib/systemd/system/ansible-pull-.service.d/ara.conf
         content: |
           [Service]
           Environment=ARA_API_SERVER=http://aspp.uber.space:44040
@@ -83,15 +115,29 @@
           Environment=ANSIBLE_CALLBACK_PLUGINS=/usr/lib/python3.11/site-packages/ara/plugins/callback
       tags: remote
 
-    - name: Enable ansible-pull.timer manually
+    - name: Enable ansible-pull-init.timer manually
       ansible.builtin.file:
-        src: /usr/local/lib/systemd/system/ansible-pull.timer
-        dest: /etc/systemd/system/multi-user.target.wants/ansible-pull.timer
+        src: /usr/local/lib/systemd/system/ansible-pull-init.timer
+        dest: /etc/systemd/system/multi-user.target.wants/ansible-pull-init.timer
         state: link
 
-    - name: Enable ansible-pull.timer
+    - name: Enable ansible-pull-repeat.timer manually
+      ansible.builtin.file:
+        src: /usr/local/lib/systemd/system/ansible-pull-repeat.timer
+        dest: /etc/systemd/system/multi-user.target.wants/ansible-pull-repeat.timer
+        state: link
+
+    - name: Enable ansible-pull-init.timer
       systemd:
-        name: ansible-pull.timer
+        name: ansible-pull-init.timer
+        enabled: true
+        state: started
+        daemon_reload: yes
+      tags: remote
+
+    - name: Enable ansible-pull-repeat.timer
+      systemd:
+        name: ansible-pull-repeat.timer
         enabled: true
         state: started
         daemon_reload: yes
