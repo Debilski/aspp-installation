@@ -1,5 +1,6 @@
 ---
 - import_playbook: ansible-pull.yml
+- import_playbook: system-setup.yml
 - import_playbook: packages.yml
 - import_playbook: services.yml
 - import_playbook: users.yml
