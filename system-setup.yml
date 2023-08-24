@@ -1,9 +1,0 @@
----
-- name: Resize btrfs root
-  remote_user: root
-  hosts: all
-  tasks:
-    - name: Resize btrfs root
-      when: ansible_distribution == "Fedora"
-      ansible.builtin.command: /usr/sbin/btrfs filesystem resize max /
-      tags: system-setup
