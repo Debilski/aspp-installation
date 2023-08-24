@@ -183,11 +183,6 @@
             - make
             - wget
             - curl
-            - autoconf
-            - automake
-            - libtool
-            - flex
-            - bison
             - gdb
             - strace
             - ltrace
@@ -204,7 +199,6 @@
             - gitk
             - git-core-doc
             - git-gui
-            - git-email
             - tig
             - gprof2dot
             - emacs
@@ -322,7 +316,6 @@
             - xclip
             - firefox
             - kcachegrind
-            - gnome-builder
             - gedit
             - gedit-plugins
             - rxvt-unicode
