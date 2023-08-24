@@ -47,6 +47,7 @@
             - vega_datasets
             - vega
             - pelita==2.2.0
+            - memray
 
       # - name: Install Rike's vim config, if no other config is present
       #   command:
