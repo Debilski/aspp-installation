@@ -152,6 +152,13 @@
           state: present
         tags: remote
 
+      - name: Disable annoying terminal sounds
+        dconf:
+          key: /org/gnome/desktop/sound/event-sounds
+          value: "false"
+          state: present
+        tags: remote
+
       - name: Setup favourites
         dconf:
           key: /org/gnome/shell/favorite-apps
