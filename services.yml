@@ -19,6 +19,7 @@
           state: stopped
           masked: true
           enabled: false
+        ignore_errors: yes
 
       - name: Disable packagekit-offline-update.service
         tags: remote
@@ -28,3 +29,4 @@
           state: stopped
           masked: true
           enabled: false
+        ignore_errors: yes

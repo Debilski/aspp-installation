@@ -72,9 +72,11 @@
       - name: Disable screensaver
         tags: remote
         command: gsettings set org.gnome.desktop.session idle-delay 0
+        ignore_errors: yes
       - name: Disable screen lock
         tags: remote
         command: gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+        ignore_errors: yes
 
       - name: Make ~/.local/bin/ directory
         file:

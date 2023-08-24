@@ -79,6 +79,13 @@
           dest: /etc/firefox/
         tags: remote
 
+      - name: Create firefox preferences directory
+        when: ansible_distribution == "Fedora"
+        file:
+          path: /usr/lib64/firefox/browser/defaults/preferences/
+          state: directory
+        tags: remote
+
       - name: Setup firefox homepage
         when: ansible_distribution == "Fedora"
         copy:

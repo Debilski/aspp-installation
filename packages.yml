@@ -290,6 +290,10 @@
             # For pelita testing
             - xauth
 
+            # For ansible settings
+            - dconf
+            - dbus-daemon
+
       - name: Install distro packages (Fedora)
         dnf:
           name: "{{ packages }}"
