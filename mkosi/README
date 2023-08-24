@@ -18,7 +18,7 @@ sudo dd bs=4096 status=progress if='mkosi.output/fedora~38/aspp.raw' of=/dev/sdX
 == Installation from usb stick to laptop
 
 0. Laptop must be in UEFI mode, SecureBoot disabled
-1. Boot from the usb stick, select 'Fedora Installer'
+1. Boot from the usb stick, select 'Text boot (installer)'
 2. Log in as student, password "student".
 3. 'sudo doinst'
 
