@@ -138,7 +138,7 @@
 
         tags: remote
 
-      - name: "Workaround nagging message ‘allow ssh-askpass to inhibit shortcuts’"
+      - name: "Work around nagging message ‘allow ssh-askpass to inhibit shortcuts’"
         # no idea why this works
         copy:
           dest: /home/student/.local/share/applications/gnome-ssh-askpass.desktop
@@ -150,6 +150,7 @@
             Exec=/usr/libexec/openssh/gnome-ssh-askpass
             Terminal=false
           owner: student
+        ignore_errors: yes
         tags: remote
 
       - name: Create user unit directory
