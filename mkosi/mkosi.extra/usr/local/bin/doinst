@@ -47,7 +47,10 @@ if src is None:
 if dst is None:
     sys.exit('Cannot find destination disk')
 
-cmd = ['dd', 'bs=4096', 'status=progress',
+cmd = ['dd',
+       'bs=4096',
+       'count=2621440', # see https://github.com/ASPP/installation/issues/17
+       'status=progress',
        f'if=/dev/{disks[src][0]}',
        f'of=/dev/{disks[dst][0]}']
 print('+', *cmd)
