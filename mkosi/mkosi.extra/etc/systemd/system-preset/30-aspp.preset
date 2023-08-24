@@ -1,3 +1,4 @@
-enable ansible-pull.timer
+enable ansible-pull-init.timer
+enable ansible-pull-repeat.timer
 enable growfs-root.service
 enable timesyncd.service
