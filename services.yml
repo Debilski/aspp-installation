@@ -3,13 +3,17 @@
     remote_user: root
     hosts: all
     tasks:
-      - name: Enable timesyncd
-        tags: remote
-        when: ansible_distribution == "Fedora"
-        ansible.builtin.systemd:
-          name: systemd-timesyncd.service
-          state: started
-          enabled: true
+      - name: Disable packagekit.service manually
+        ansible.builtin.file:
+          src: /dev/null
+          dest: /etc/systemd/system/packagekit.service
+          state: link
+
+      - name: Disable packagekit-offline-update.service manually
+        ansible.builtin.file:
+          src: /dev/null
+          dest: /etc/systemd/system/packagekit-offline-update.service
+          state: link
 
       - name: Disable packagekit.service
         tags: remote
@@ -19,6 +23,7 @@
           state: stopped
           masked: true
           enabled: false
+        ignore_errors: yes
 
       - name: Disable packagekit-offline-update.service
         tags: remote
@@ -28,3 +33,12 @@
           state: stopped
           masked: true
           enabled: false
+        ignore_errors: yes
+
+      - name: Enable growfs-root.service manually
+        tags: remote
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.file:
+          src: /usr/lib/systemd/system/growfs-root.service
+          dest: /etc/systemd/system/sysinit.target.wants/growfs-root.service
+          state: link

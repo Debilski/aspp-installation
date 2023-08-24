@@ -38,7 +38,7 @@
         state: directory
       tags: remote
 
-    - name: Install timer file
+    - name: Install ansible-pull.timer
       copy:
         dest: /usr/local/lib/systemd/system/ansible-pull.timer
         content: |
@@ -49,7 +49,7 @@
           WantedBy=multi-user.target
       tags: remote
 
-    - name: Install service file
+    - name: Install ansible-pull.service
       copy:
         dest: /usr/local/lib/systemd/system/ansible-pull.service
         content: |
@@ -83,7 +83,13 @@
           Environment=ANSIBLE_CALLBACK_PLUGINS=/usr/lib/python3.11/site-packages/ara/plugins/callback
       tags: remote
 
-    - name: Enable timer
+    - name: Enable ansible-pull.timer manually
+      ansible.builtin.file:
+        src: /usr/local/lib/systemd/system/ansible-pull.timer
+        dest: /etc/systemd/system/multi-user.target.wants/ansible-pull.timer
+        state: link
+
+    - name: Enable ansible-pull.timer
       systemd:
         name: ansible-pull.timer
         enabled: true

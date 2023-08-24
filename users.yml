@@ -79,6 +79,13 @@
           dest: /etc/firefox/
         tags: remote
 
+      - name: Create firefox preferences directory
+        when: ansible_distribution == "Fedora"
+        file:
+          path: /usr/lib64/firefox/browser/defaults/preferences/
+          state: directory
+        tags: remote
+
       - name: Setup firefox homepage
         when: ansible_distribution == "Fedora"
         copy:
@@ -89,7 +96,7 @@
 
         tags: remote
 
-      - name: Set timezone
+      - name: Set timezone to Europe/Athens
         timezone:
           name: Europe/Athens
         tags: remote
@@ -158,4 +165,10 @@
             [Unit]
             Wants=keyadder@%N.service
 
+        tags: remote
+
+      - name: Install Wifi connection profile
+        copy:
+          src: files/FORTH_Guests.nmconnection
+          dest: /etc/NetworkManager/system-connections/
         tags: remote

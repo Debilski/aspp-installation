@@ -47,6 +47,7 @@
             - vega_datasets
             - vega
             - pelita==2.2.0
+            - memray
 
       # - name: Install Rike's vim config, if no other config is present
       #   command:
@@ -71,9 +72,11 @@
       - name: Disable screensaver
         tags: remote
         command: gsettings set org.gnome.desktop.session idle-delay 0
+        ignore_errors: yes
       - name: Disable screen lock
         tags: remote
         command: gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+        ignore_errors: yes
 
       - name: Make ~/.local/bin/ directory
         file:
@@ -138,7 +141,7 @@
           state: absent
         tags: cleanup
 
-      - name: Set input keyboards to us/es/de
+      - name: Set input keyboards to us/gr
         dconf:
           key: /org/gnome/desktop/input-sources/sources
           value: "[('xkb', 'us'), ('xkb', 'gr')]"

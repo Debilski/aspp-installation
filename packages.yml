@@ -183,11 +183,6 @@
             - make
             - wget
             - curl
-            - autoconf
-            - automake
-            - libtool
-            - flex
-            - bison
             - gdb
             - strace
             - ltrace
@@ -204,7 +199,6 @@
             - gitk
             - git-core-doc
             - git-gui
-            - git-email
             - tig
             - gprof2dot
             - emacs
@@ -296,6 +290,10 @@
             # For pelita testing
             - xauth
 
+            # For ansible settings
+            - dconf
+            - dbus-daemon
+
       - name: Install distro packages (Fedora)
         dnf:
           name: "{{ packages }}"
@@ -313,17 +311,6 @@
             - gnome-shell-extension-openweather
             - gnome-shell-extension-workspace-indicator
 
-            # backgrounds for exercises
-            - f38-backgrounds-gnome.noarch
-            - f37-backgrounds-gnome.noarch
-            - f36-backgrounds-gnome.noarch
-            - f35-backgrounds-gnome.noarch
-            - f34-backgrounds-gnome.noarch
-            - f33-backgrounds-gnome.noarch
-            - f32-backgrounds-gnome.noarch
-            - f31-backgrounds-gnome.noarch
-            - f30-backgrounds-gnome.noarch
-
             # Various
             - inkscape
             - geeqie
@@ -333,7 +320,6 @@
             - xclip
             - firefox
             - kcachegrind
-            - gnome-builder
             - gedit
             - gedit-plugins
             - rxvt-unicode
