@@ -1,7 +1,7 @@
 enable ansible-pull-init.timer
 enable ansible-pull-repeat.timer
 enable growfs-root.service
-enable timesyncd.service
+enable systemd-timesyncd.service
 disable pmlogger.service
 disable pmlogger_farm.service
 
