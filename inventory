@@ -1,2 +1,1 @@
 aspp.in.waw.pl ansible_ssh_user=root
-aspp ansible_ssh_user=root
