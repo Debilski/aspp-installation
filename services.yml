@@ -35,6 +35,26 @@
           enabled: false
         ignore_errors: yes
 
+      - name: Disable pmlogger.service
+        tags: remote
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.systemd:
+          name: pmlogger.service
+          state: stopped
+          masked: true
+          enabled: false
+        ignore_errors: yes
+
+      - name: Disable pmlogger_farm.service
+        tags: remote
+        when: ansible_distribution == "Fedora"
+        ansible.builtin.systemd:
+          name: pmlogger_farm.service
+          state: stopped
+          masked: true
+          enabled: false
+        ignore_errors: yes
+
       - name: Enable growfs-root.service manually
         tags: remote
         when: ansible_distribution == "Fedora"
