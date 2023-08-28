@@ -138,7 +138,7 @@
 
         tags: remote
 
-      - name: "Workaround nagging message ‘allow ssh-askpass to inhibit shortcuts’"
+      - name: "Work around nagging message ‘allow ssh-askpass to inhibit shortcuts’"
         ansible.builtin.file:
           path: /home/student/.local/share/applications
           state: directory
@@ -159,6 +159,7 @@
             Exec=/usr/libexec/openssh/gnome-ssh-askpass
             Terminal=false
           owner: student
+        ignore_errors: yes
         tags: remote
 
       - name: Create user unit directory
