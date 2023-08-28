@@ -139,6 +139,15 @@
         tags: remote
 
       - name: "Workaround nagging message ‘allow ssh-askpass to inhibit shortcuts’"
+        ansible.builtin.file:
+          path: /home/student/.local/share/applications
+          state: directory
+          mode: '0755'
+          owner: student
+          group: student
+        tags: remote
+
+      - name: "Workaround nagging message ‘allow ssh-askpass to inhibit shortcuts’"
         # no idea why this works
         copy:
           dest: /home/student/.local/share/applications/gnome-ssh-askpass.desktop
