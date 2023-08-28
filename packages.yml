@@ -175,9 +175,11 @@
         when: ansible_distribution == "Fedora"
         vars:
           packages:
+            - acl
             - sudo
             - plocate
             - zram-generator-defaults
+            - diffutils
             - gcc
             - g++
             - make
