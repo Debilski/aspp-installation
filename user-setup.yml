@@ -162,20 +162,6 @@
           state: present
         tags: remote
 
-      - name: Disable suspend on battery
-        dconf:
-          key: /org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-type
-          value: "nothing"
-          state: present
-        tags: remote
-
-      - name: Disable suspend on AC
-        dconf:
-          key: /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type
-          value: "nothing"
-          state: present
-        tags: remote
-
       - name: Show battery percentage
         dconf:
           key: /org/gnome/desktop/interface/show-battery-percentage
