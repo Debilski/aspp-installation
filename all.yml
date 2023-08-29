@@ -4,3 +4,4 @@
 - import_playbook: users.yml
 - import_playbook: services.yml
 - import_playbook: user-setup.yml
+- import_playbook: chatgpt-guard.yml

@@ -297,6 +297,7 @@
             - dbus-daemon
 
             - mpv
+            - alsa-utils
 
       - name: Install distro packages (Fedora)
         dnf:
@@ -369,5 +370,12 @@
         tags: remote,packages
         copy:
           src: files/py-spy
+          mode: '0755'
+          dest: /usr/local/bin/
+
+      - name: Install pre-compiled mkcert
+        tags: remote,packages
+        copy:
+          src: files/mkcert
           mode: '0755'
           dest: /usr/local/bin/
