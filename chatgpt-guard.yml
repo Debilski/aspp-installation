@@ -9,7 +9,7 @@
   tasks:
     - name: Clone ChatGPT-Guard repo
       ansible.builtin.git:
-        repo: {{repo_url}}
+        repo: "{{ repo_url }}"
         dest: /srv/chatgpt-guard
       tags: packages,remote
 
