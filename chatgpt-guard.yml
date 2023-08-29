@@ -16,5 +16,4 @@
     - name: Enable ChatGPT-Guard units
       ansible.builtin.command:
         cmd: /srv/chatgpt-guard/do_setup.sh
-        creates: /etc/systemd/system/chatgpt-guard.socket
       tags: packages,remote
