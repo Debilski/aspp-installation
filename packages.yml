@@ -298,6 +298,7 @@
 
             - mpv
             - alsa-utils
+            - python3-systemd
 
       - name: Install distro packages (Fedora)
         dnf:
