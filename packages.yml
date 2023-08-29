@@ -329,7 +329,7 @@
             - rxvt-unicode
 
             # Fonts for the pacman characters on the command line
-            - google-noto-*kannada*
+            - google-noto-*canadian-aboriginal*-fonts
 
       - name: Install latest git
         tags: packages
