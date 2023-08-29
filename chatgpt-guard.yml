@@ -3,13 +3,10 @@
 - hosts: all
   remote_user: root
 
-  vars:
-    repo_url: https://github.com/keszybz/redirect
-
   tasks:
     - name: Clone ChatGPT-Guard repo
       ansible.builtin.git:
-        repo: {{repo_url}}
+        repo: https://github.com/keszybz/redirect
         dest: /srv/chatgpt-guard
       tags: packages,remote
 
