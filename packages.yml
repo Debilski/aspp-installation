@@ -332,6 +332,7 @@
 
             # Fonts for the pacman characters on the command line
             - google-noto-*canadian-aboriginal*-fonts
+            - google-noto-emoji-color-fonts
 
       - name: Install latest git
         tags: packages
