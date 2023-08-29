@@ -296,6 +296,8 @@
             - dconf
             - dbus-daemon
 
+            - mpv
+
       - name: Install distro packages (Fedora)
         dnf:
           name: "{{ packages }}"
