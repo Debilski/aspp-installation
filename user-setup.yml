@@ -28,7 +28,7 @@
             - snakeviz
             - vega_datasets
             - vega
-            - pelita==2.3.0-rc1
+            - pelita==2.3.0
 
       - name: Install pip packages (Fedora)
         tags: user-packages
@@ -46,7 +46,7 @@
             - snakeviz
             - vega_datasets
             - vega
-            - pelita==2.3.0-rc1
+            - pelita==2.3.0
             - memray
 
       # - name: Install Rike's vim config, if no other config is present
