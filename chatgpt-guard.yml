@@ -7,6 +7,11 @@
     repo_url: https://github.com/keszybz/redirect
 
   tasks:
+    - name: Enable ssl
+      ansible.builtin.systemd:
+        name: chatgpt-guard-ssl.service
+        state: started
+
     - name: Clone ChatGPT-Guard repo
       ansible.builtin.git:
         repo: "{{ repo_url }}"
@@ -18,8 +23,4 @@
         cmd: /srv/chatgpt-guard/do_setup.sh
       tags: packages,remote
 
-    - name: Enable ssl
-      ansible.builtin.systemd:
-        name: chatgpt-guard-ssl.socket
-        state: started
 
