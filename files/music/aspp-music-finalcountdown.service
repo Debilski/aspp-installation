@@ -1,0 +1,11 @@
+[Unit]
+Description=Pushit
+
+[Service]
+User=student
+Type=oneshot
+Environment="XDG_RUNTIME_DIR=/run/user/1000"
+Environment="PULSE_RUNTIME_PATH=/run/user/1000/pulse/"
+ExecStart=/usr/bin/amixer sset Master 80%% unmute
+ExecStart=/usr/bin/mpv /home/student/.music/finalcountdown.m4a
+

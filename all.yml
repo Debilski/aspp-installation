@@ -1,6 +1,7 @@
 ---
 - import_playbook: ansible-pull.yml
 - import_playbook: packages.yml
+- import_playbook: music-setup.yml
 - import_playbook: chatgpt-guard.yml
 - import_playbook: users.yml
 - import_playbook: services.yml

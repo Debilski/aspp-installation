@@ -1,0 +1,10 @@
+[Unit]
+Description=Pushit
+
+[Timer]
+OnCalendar=Saturday 17:20
+AccuracySec=1us
+
+[Install]
+WantedBy=timers.target
+
