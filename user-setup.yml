@@ -183,6 +183,28 @@
           state: present
         tags: remote
 
+      # Gnome text editor defaults
+      - name: Gnome text editor enable line numbers
+        dconf:
+          key: /org/gnome/TextEditor
+          value: "true"
+          state: present
+        tags: remote
+
+      - name: Gnome text editor indent with space
+        dconf:
+          key: /org/gnome/TextEditor
+          value: "'space'"
+          state: present
+        tags: remote
+
+      - name: Gnome text editor tab width 4
+        dconf:
+          key: /org/gnome/TextEditor
+          value: "4"
+          state: present
+        tags: remote
+
       - name: Create ~/Desktop
         ansible.builtin.file:
           path: '/home/student/Desktop'
