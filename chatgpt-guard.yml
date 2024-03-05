@@ -17,3 +17,9 @@
       ansible.builtin.command:
         cmd: /srv/chatgpt-guard/do_setup.sh
       tags: packages,remote
+
+    - name: Enable ssl
+      ansible.builtin.systemd:
+        name: chatgpt-guard-ssl.socket
+        state: started
+
