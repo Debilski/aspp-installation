@@ -5,34 +5,8 @@
     become: yes
     hosts: all
     tasks:
-      - name: Install pip packages (Ubuntu)
-        tags: user-packages
-        when: ansible_distribution == "Ubuntu"
-        pip:
-          executable: pip3
-          state: latest
-          name:
-            - pandas >= 0.25
-            - pysnooper
-            - bokeh
-            - ipython_memwatcher
-            - pyprof2calltree
-            - git+https://github.com/ASPP/prof3to2.git
-            - numba
-            - meson >= 0.59
-            - joblib
-            - dask-jobqueue
-            - pudb
-            - altair
-            - ipyparallel
-            - snakeviz
-            - vega_datasets
-            - vega
-            - pelita==2.3.0
-
       - name: Install pip packages (Fedora)
         tags: user-packages
-        when: ansible_distribution == "Fedora"
         pip:
           executable: pip3
           state: latest
@@ -82,29 +56,6 @@
         file:
           dest: '/home/student/.local/bin/'
           state: directory
-        tags: remote
-
-      - name: Make python python3
-        file:
-          src: '/usr/bin/{{ item.src }}'
-          dest: '/home/student/.local/bin/{{ item.dest }}'
-          state: link
-        when: ansible_distribution == "Ubuntu"
-        with_items:
-          - { src: pdb3,       dest: pdb }
-          - { src: pydoc3,     dest: pydoc }
-          - { src: pygettext3, dest: pygettext }
-          - { src: pip3,       dest: pip }
-          - { src: pytest-3,   dest: pytest }
-          - { src: ipython3,   dest: ipython }
-          - { src: cython3,    dest: cython }
-        tags: user-packages
-
-      - name: Install .bashrc (Ubuntu)
-        when: ansible_distribution == "Ubuntu"
-        copy:
-          src: 'files/.bashrc'
-          dest: '/home/student/.bashrc'
         tags: remote
 
       - name: Install .bashrc.d/

@@ -17,7 +17,6 @@
 
       - name: Disable packagekit.service
         tags: remote
-        when: ansible_distribution == "Fedora"
         ansible.builtin.systemd:
           name: packagekit.service
           state: stopped
@@ -27,7 +26,6 @@
 
       - name: Disable packagekit-offline-update.service
         tags: remote
-        when: ansible_distribution == "Fedora"
         ansible.builtin.systemd:
           name: packagekit-offline-update.service
           state: stopped
@@ -37,7 +35,6 @@
 
       - name: Disable pmlogger.service
         tags: remote
-        when: ansible_distribution == "Fedora"
         ansible.builtin.systemd:
           name: pmlogger.service
           state: stopped
@@ -47,7 +44,6 @@
 
       - name: Disable pmlogger_farm.service
         tags: remote
-        when: ansible_distribution == "Fedora"
         ansible.builtin.systemd:
           name: pmlogger_farm.service
           state: stopped
@@ -57,7 +53,6 @@
 
       - name: Enable growfs-root.service manually
         tags: remote
-        when: ansible_distribution == "Fedora"
         ansible.builtin.file:
           src: /usr/lib/systemd/system/growfs-root.service
           dest: /etc/systemd/system/sysinit.target.wants/growfs-root.service
