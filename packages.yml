@@ -94,7 +94,7 @@
             - python3-sphinx_rtd_theme
             - python3-pudb
             - python3-pytest
-            - python3-pytest-flake8
+            - python3-flake8
             - python3-pytest-flakes
             - python3-pytest-mpi
             - python3-pytest-cov
