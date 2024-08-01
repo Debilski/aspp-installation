@@ -166,17 +166,25 @@
             - google-noto-*canadian-aboriginal*-fonts
             - google-noto-emoji-color-fonts
 
-      - stat:
-          path: /usr/bin/code
+
+      - name: Add key for vscode repository
         tags: packages,visualstudio,graphical
-        register: code_exists
+        ansible.builtin.rpm_key:
+          state: present
+          key: https://packages.microsoft.com/keys/microsoft.asc
+
+      - name: Add vscode repository
+        tags: packages,visualstudio,graphical
+        ansible.builtin.yum_repository:
+          name: vscode
+          description: Visual Studio Code
+          baseurl: https://packages.microsoft.com/yumrepos/vscode
+          gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
       - name: Install visualstudio code
         tags: packages,visualstudio,graphical
-        when: not code_exists.stat.exists
-        dnf:
-          name: https://packages.microsoft.com/yumrepos/vscode/code-1.70.2-1660629488.el7.x86_64.rpm
-          disable_gpg_check: yes
+        ansible.builtin.dnf:
+          name: code
 
       - name: Install pre-compiled py-spy
         tags: remote,packages
