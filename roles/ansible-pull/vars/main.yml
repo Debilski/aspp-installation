@@ -1,0 +1,14 @@
+---
+schedule_init: |
+  OnBootSec=30 s
+  OnUnitInactiveSec=2 h
+  RandomizedDelaySec=30 s
+
+schedule_repeat: |
+  OnBootSec=10 min
+  OnUnitInactiveSec=10 min
+  RandomizedDelaySec=30 s
+
+repo_url: https://github.com/aspp/installation
+
+pull_tags: remote,packages,user-packages

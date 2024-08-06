@@ -1,0 +1,37 @@
+---
+- name: Copy music folder
+  ansible.builtin.copy:
+    src: "music/"
+    dest: "/home/student/.music/"
+
+- name: Set up timers
+  ansible.builtin.copy:
+    src: "aspp-music-finalcountdown.service"
+    dest: "/etc/systemd/system/"
+
+- name: Set up timers
+  ansible.builtin.copy:
+    src: "aspp-music-finalcountdown.timer"
+    dest: "/etc/systemd/system/"
+
+- name: Set up timers
+  ansible.builtin.copy:
+    src: "aspp-music-pushit.service"
+    dest: "/etc/systemd/system/"
+
+- name: Set up timers
+  ansible.builtin.copy:
+    src: "aspp-music-pushit.timer"
+    dest: "/etc/systemd/system/"
+
+- name: Enable music
+  ansible.builtin.systemd_service:
+    name: aspp-music-pushit.timer
+    state: started
+    daemon_reload: true
+
+- name: Enable music
+  ansible.builtin.systemd_service:
+    name: aspp-music-finalcountdown.timer
+    state: started
+    daemon_reload: true

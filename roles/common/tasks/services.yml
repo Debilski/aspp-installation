@@ -1,0 +1,55 @@
+---
+- name: Disable packagekit.service manually
+  ansible.builtin.file:
+    src: /dev/null
+    dest: /etc/systemd/system/packagekit.service
+    state: link
+
+- name: Disable packagekit-offline-update.service manually
+  ansible.builtin.file:
+    src: /dev/null
+    dest: /etc/systemd/system/packagekit-offline-update.service
+    state: link
+
+- name: Disable packagekit.service
+  tags: remote
+  ansible.builtin.systemd_service:
+    name: packagekit.service
+    state: stopped
+    masked: true
+    enabled: false
+  ignore_errors: true
+
+- name: Disable packagekit-offline-update.service
+  tags: remote
+  ansible.builtin.systemd_service:
+    name: packagekit-offline-update.service
+    state: stopped
+    masked: true
+    enabled: false
+  ignore_errors: true
+
+- name: Disable pmlogger.service
+  tags: remote
+  ansible.builtin.systemd_service:
+    name: pmlogger.service
+    state: stopped
+    masked: true
+    enabled: false
+  ignore_errors: true
+
+- name: Disable pmlogger_farm.service
+  tags: remote
+  ansible.builtin.systemd_service:
+    name: pmlogger_farm.service
+    state: stopped
+    masked: true
+    enabled: false
+  ignore_errors: true
+
+- name: Enable growfs-root.service manually
+  tags: remote
+  ansible.builtin.file:
+    src: /usr/lib/systemd/system/growfs-root.service
+    dest: /etc/systemd/system/sysinit.target.wants/growfs-root.service
+    state: link
