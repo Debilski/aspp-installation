@@ -4,16 +4,24 @@ curl https://zbyszek.fedorapeople.org/aspp/aspp.raw.zst | zstdcat | sudo dd bs=4
 
 == Creation of image
 
-cd installation/mkosi
-sudo mkosi -f
+    cd installation/mkosi
+    mkosi --force
+
+If necessary, command line options `--package-cache-dir=pkgcache` and `--root-password=???` can be helpful.
 
 == Local testing of the image
 
-mkosi qemu
+    sudo mkosi qemu
+
+or
+
+    sudo mkosi boot
+
+`mkosi boot` only makes sense when a root password has been set. Otherwise use `mkosi shell` for a chroot environment.
 
 == Creation of USB sticks using a local image
 
-sudo dd bs=4096 status=progress if='mkosi.output/fedora~38/aspp.raw' of=/dev/sdX
+    sudo dd bs=4M conf=fsync oflag=direct status=progress if='mkosi.output/aspp.raw' of=/dev/sdX
 
 == Installation from usb stick to laptop
 
