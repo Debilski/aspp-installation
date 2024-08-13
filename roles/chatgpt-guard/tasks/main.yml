@@ -1,0 +1,22 @@
+---
+- name: Install pre-compiled mkcert
+  tags: remote,packages
+  ansible.builtin.copy:
+    src: mkcert
+    mode: "0755"
+    dest: /usr/local/bin/
+
+- name: Clone ChatGPT-Guard repo
+  ansible.builtin.git:
+    repo: "{{ repo_url }}"
+    dest: /srv/chatgpt-guard
+
+- name: Enable ChatGPT-Guard units
+  ansible.builtin.command:
+    cmd: /srv/chatgpt-guard/do_setup.sh
+
+- name: Force-enable chatgpt-ssl
+  ansible.builtin.systemd_service:
+    name: chatgpt-guard-ssl.service
+    state: started
+    daemon_reload: true

@@ -1,8 +1,28 @@
 ---
-- import_playbook: ansible-pull.yml
-- import_playbook: packages.yml
-- import_playbook: music-setup.yml
-- import_playbook: chatgpt-guard.yml
-- import_playbook: users.yml
-- import_playbook: services.yml
-- import_playbook: user-setup.yml
+- name: Basic ASPP laptop setup
+  hosts: all
+
+  roles:
+    - ansible-pull
+    - common
+
+- name: ASPP user setup
+  hosts: all
+
+  remote_user: root
+  become_user: student
+  become: true
+
+  roles:
+    - user-setup
+
+- name: ASPP bonus setup
+  hosts: all
+
+  roles:
+    - role: music-setup
+      tags:
+        - music-setup
+    - role: chatgpt-guard
+      tags:
+        - chatgpt-guard

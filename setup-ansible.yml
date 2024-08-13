@@ -1,0 +1,7 @@
+---
+- name: Basic ASPP laptop setup (only ansible)
+  hosts: all
+
+  roles:
+    - ansible-pull
+
