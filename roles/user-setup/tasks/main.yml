@@ -118,6 +118,14 @@
     state: present
   tags: remote
 
+  # TODO: This should be set once and not override what the user has chosen
+- name: Make Gnome terminal follow the System theme
+  dconf:
+    key: /org/gnome/terminal/legacy/theme-variant
+    value: "'system'"
+    state: present
+  tags: remote
+
 - name: Disable annoying terminal sounds
   dconf:
     key: /org/gnome/desktop/sound/event-sounds
