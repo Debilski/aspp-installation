@@ -177,3 +177,32 @@
     name: github.com
     key: github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
     state: present
+
+- name: "Work around nagging message ‘allow ssh-askpass to inhibit shortcuts’"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: student
+    group: student
+  tags: remote
+  loop:
+    - /home/student/.local
+    - /home/student/.local/share
+    - /home/student/.local/share/applications
+
+- name: "Work around nagging message ‘allow ssh-askpass to inhibit shortcuts’"
+  # no idea why this works
+  ansible.builtin.copy:
+    dest: /home/student/.local/share/applications/gnome-ssh-askpass.desktop
+    content: |
+      [Desktop Entry]
+      Name=GNOME ssh-askpass
+      GenericName=ssh-askpass
+      Type=Application
+      Exec=/usr/libexec/openssh/gnome-ssh-askpass
+      Terminal=false
+    mode: "0755"
+    owner: student
+    group: student
+  tags: remote

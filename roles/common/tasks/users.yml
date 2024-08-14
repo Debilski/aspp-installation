@@ -94,30 +94,6 @@
 
   tags: remote
 
-- name: "Work around nagging message ‘allow ssh-askpass to inhibit shortcuts’"
-  ansible.builtin.file:
-    path: /home/student/.local/share/applications
-    state: directory
-    mode: "0755"
-    owner: student
-    group: student
-  tags: remote
-
-- name: "Workaround nagging message ‘allow ssh-askpass to inhibit shortcuts’"
-  # no idea why this works
-  copy:
-    dest: /home/student/.local/share/applications/gnome-ssh-askpass.desktop
-    content: |
-      [Desktop Entry]
-      Name=GNOME ssh-askpass
-      GenericName=ssh-askpass
-      Type=Application
-      Exec=/usr/libexec/openssh/gnome-ssh-askpass
-      Terminal=false
-    owner: student
-  ignore_errors: true
-  tags: remote
-
 - name: Create local unit directory
   file:
     path: /usr/local/lib/systemd/user/run-media-.mount.d
