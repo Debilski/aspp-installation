@@ -1,0 +1,3 @@
+---
+ansible_pull_timer_started: false
+ansible_pull_timer_enabled: false

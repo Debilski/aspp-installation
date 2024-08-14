@@ -87,30 +87,32 @@
       Environment=ANSIBLE_CALLBACK_PLUGINS=/usr/lib/python3.12/site-packages/ara/plugins/callback
   tags: remote
 
-- name: Enable ansible-pull-init.timer manually
-  ansible.builtin.file:
-    src: /usr/local/lib/systemd/system/ansible-pull-init.timer
-    dest: /etc/systemd/system/multi-user.target.wants/ansible-pull-init.timer
-    state: link
-
-- name: Enable ansible-pull-repeat.timer manually
-  ansible.builtin.file:
-    src: /usr/local/lib/systemd/system/ansible-pull-repeat.timer
-    dest: /etc/systemd/system/multi-user.target.wants/ansible-pull-repeat.timer
-    state: link
-
 - name: Enable ansible-pull-init.timer
   ansible.builtin.systemd_service:
     name: ansible-pull-init.timer
-    enabled: true
-    state: started
+    enabled: "{{ ansible_pull_timer_enabled }}"
     daemon_reload: true
   tags: remote
 
 - name: Enable ansible-pull-repeat.timer
   ansible.builtin.systemd_service:
     name: ansible-pull-repeat.timer
-    enabled: true
-    state: started
+    enabled: "{{ ansible_pull_timer_enabled }}"
     daemon_reload: true
   tags: remote
+
+
+- name: Enable ansible-pull-init.timer
+  ansible.builtin.systemd_service:
+    name: ansible-pull-init.timer
+    state: "started"
+  tags: remote
+  when: ansible_pull_timer_started
+
+- name: Enable ansible-pull-repeat.timer
+  ansible.builtin.systemd_service:
+    name: ansible-pull-repeat.timer
+    state: "started"
+    daemon_reload: true
+  tags: remote
+  when: ansible_pull_timer_started
