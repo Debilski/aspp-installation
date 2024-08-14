@@ -14,7 +14,7 @@
       - snakeviz
       - vega_datasets
       - vega
-      - pelita==2.3.0
+      - pelita==2.5.0
       - memray
 
 # - name: Install Rike's vim config, if no other config is present
