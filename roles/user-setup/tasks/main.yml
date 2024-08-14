@@ -80,12 +80,14 @@
     path: "/home/student/.bash_history"
     state: absent
   tags: cleanup
+  when: "'cleanup' in ansible_run_tags"
 
 - name: Remove .ipynb_checkpoints/
   file:
     path: "/home/student/.ipynb_checkpoints/"
     state: absent
   tags: cleanup
+  when: "'cleanup' in ansible_run_tags"
 
 - name: Set input keyboards to us/gr
   dconf:
