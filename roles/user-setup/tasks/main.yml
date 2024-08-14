@@ -162,7 +162,7 @@
 
 - name: Copy background
   copy:
-    src: "files/aspp_2023_background.png"
+    src: "files/aspp_2024_background.png"
     dest: "/home/student/Desktop/wallpaper.png"
   tags: remote
 
