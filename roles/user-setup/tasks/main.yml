@@ -5,6 +5,7 @@
     executable: pip3
     state: latest
     name:
+      - magic-wormhole
       - ipython_memwatcher
       - pyprof2calltree
       - git+https://github.com/ASPP/prof3to2.git
