@@ -65,6 +65,11 @@
     name: Europe/Athens
   tags: remote
 
+- name: Add English langpack
+  ansible.builtin.dnf:
+    name: glibc-langpack-en
+  tags: packages
+
 - name: Set language to English
   copy:
     content: |
