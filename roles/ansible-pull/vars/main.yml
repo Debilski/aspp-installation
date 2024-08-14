@@ -8,7 +8,3 @@ schedule_repeat: |
   OnBootSec=10 min
   OnUnitInactiveSec=10 min
   RandomizedDelaySec=30 s
-
-repo_url: https://github.com/aspp/installation
-
-pull_tags: remote,packages,user-packages

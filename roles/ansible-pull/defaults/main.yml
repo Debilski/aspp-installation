@@ -1,3 +1,6 @@
 ---
 ansible_pull_timer_started: false
 ansible_pull_timer_enabled: false
+
+ansible_repo_url: https://github.com/aspp/installation
+ansible_pull_tags: ""
