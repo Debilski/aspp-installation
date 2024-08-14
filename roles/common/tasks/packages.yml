@@ -162,6 +162,8 @@
       - google-noto-*canadian-aboriginal*-fonts
       - google-noto-emoji-color-fonts
 
+- import_tasks: vscode.yml
+
 - name: Install pre-compiled py-spy
   tags: remote,packages
   ansible.builtin.copy:
