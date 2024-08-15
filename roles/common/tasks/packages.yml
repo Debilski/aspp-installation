@@ -34,7 +34,10 @@
       - tig
       - gprof2dot
       - emacs
-      - vim
+      - vim-enhanced
+      - neovim
+      - python3-neovim
+      - fzf
       - htop
       - curl
       - ncdu
@@ -162,7 +165,7 @@
       - google-noto-*canadian-aboriginal*-fonts
       - google-noto-emoji-color-fonts
 
-- import_tasks: vscode.yml
+- import_tasks: packages_vscode.yml
 
 - name: Install pre-compiled py-spy
   tags: remote,packages

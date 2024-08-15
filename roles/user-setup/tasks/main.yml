@@ -24,11 +24,31 @@
       - pelita==2.5.0
       - memray
 
-# - name: Install Rike's vim config, if no other config is present
-#   command:
-#     cmd: git clone 'https://github.com/Debilski/vim-basic.git' '/home/student/.vim' && ln -s /home/student/.vim/vimrc /home/student/.vimrc && vim vim +PlugInstall +qall
-#     creates: /home/student/.vim
-#   tags: remote
+- name: Minimal but useful vim config
+  ansible.builtin.git:
+    repo: https://github.com/Debilski/vim-basic.git
+    dest: /home/student/.config/vim
+    update: false
+  tags: remote
+  register: vim_config
+
+- name: Install vim plugins
+  ansible.builtin.command: 'vim +PlugInstall +qall'
+  tags: remote
+  when: vim_config.changed
+
+- name: Kickstart neovim
+  ansible.builtin.git:
+    repo: https://github.com/nvim-lua/kickstart.nvim.git
+    dest: /home/student/.config/nvim
+    update: false
+  tags: remote
+  register: nvim_config
+
+- name: Install nvim plugins
+  ansible.builtin.command: 'nvim --headless "+Lazy! sync" +qa'
+  tags: remote
+  when: nvim_config.changed
 
 - name: Set up git
   tags: remote
