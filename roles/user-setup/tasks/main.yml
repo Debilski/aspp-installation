@@ -1,4 +1,10 @@
 ---
+- name: Ensure xdg-user-dirs
+  ansible.builtin.command: xdg-user-dirs-update
+  # Creates ~/Desktop, ~/Downloads ... and .config folders
+  # Unfortunately not .cache and .local
+  tags: remote
+
 - name: Install pip packages (Fedora)
   tags: user-packages
   pip:
